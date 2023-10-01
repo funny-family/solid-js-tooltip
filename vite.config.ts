@@ -21,7 +21,7 @@ export default defineConfig({
     minify: false,
     sourcemap: true,
     lib: {
-      entry: path.resolve(__dirname, './lib/modal/index.ts'),
+      entry: path.resolve(__dirname, './lib/tooltip/index.ts'),
       name: pkg.name,
       formats: ['es', 'cjs'],
       fileName: (format) => {
