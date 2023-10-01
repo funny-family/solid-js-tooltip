@@ -1,0 +1,52 @@
+{
+  "name": "solid-js-tooltip",
+  "private": false,
+  "version": "1.0.0",
+  "description": "",
+  "author": "funny-family <https://github.com/funny-family>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/funny-family/solid-js-tooltip.git"
+  },
+  "homepage": "https://github.com/funny-family/solid-js-tooltip#readme",
+  "bugs": {
+    "url": "https://github.com/funny-family/solid-js-tooltip/issues"
+  },
+  "license": "MIT",
+  "keywords": [],
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./*": "./*"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "concurrently \"rm -rf ./dist\" \"pnpm build:watch\"",
+    "build": "vite build",
+    "build:watch": "vite build --watch",
+    "release": "release-it",
+    "publish": "pnpm build && pnpm release"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.3",
+    "concurrently": "^8.2.1",
+    "release-it": "^16.1.5",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.5.3",
+    "vite-plugin-solid": "^2.7.0"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.7.12"
+  }
+}
