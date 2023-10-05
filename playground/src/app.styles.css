@@ -16,3 +16,9 @@ dialog {
   width: 400px;
   height: 200px;
 }
+
+/* ===================================================================================== */
+
+#solid-js-tooltip-container {
+  position: absolute;
+}
