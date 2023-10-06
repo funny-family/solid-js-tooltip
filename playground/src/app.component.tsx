@@ -58,9 +58,21 @@ export const App: Component = () => {
         />
       </section>
       <section
-        style={{ margin: '0em' }}
+        style={{ 'max-width': '400px', 'margin-block-start': '10em' }}
         use:tooltip={{
-          element: <div>This is text input!</div>,
+          element: (
+            <div
+              style={{
+                'top': 'calc(var(--tooltip-position-y) - 60px)',
+                'left': 'calc(var(--tooltip-parent-width) / 2)',
+                'background-color': 'bisque',
+                'padding': '0.4em',
+                'border-radius': '0.4rem',
+              }}
+            >
+              This is text input!
+            </div>
+          ),
         }}
       >
         <h1>Example 3</h1>
@@ -71,6 +83,32 @@ export const App: Component = () => {
           possimus eaque minima optio.
         </p>
       </section>
+
+      <div
+        style={{
+          'margin-block': '6em',
+        }}
+      >
+        <section
+          style={{
+            position: 'relative',
+          }}
+        >
+          <h1
+            use:tooltip={{
+              element: <div>This is tooltip!</div>,
+            }}
+          >
+            Example 4
+          </h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+            similique dolores eveniet consequatur! Minima ipsum dolorem unde,
+            distinctio sint vero perspiciatis mollitia tempora rem repellendus?
+            Fugiat possimus eaque minima optio.
+          </p>
+        </section>
+      </div>
     </main>
   );
 };
