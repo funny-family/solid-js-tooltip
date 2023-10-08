@@ -1,0 +1,19 @@
+/* .solid-js-tooltip-hoverable:hover {
+  border: 2px solid red;
+} */
+
+.solid-js-tooltips {
+  display: block;
+}
+
+.solid-js-tooltip {
+  display: block;
+  /* position: absolute; */
+  position: fixed;
+  z-index: 999;
+  box-sizing: border-box;
+
+  top: var(--tooltip-parent-position-y);
+  left: var(--tooltip-parent-position-x);
+  /* width: max-content; */
+}
