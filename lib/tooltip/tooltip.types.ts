@@ -5,15 +5,16 @@ import type { RequireAtLeastOne } from '../types';
 //   element: TElement;
 // };
 
+export type TooltipDirectiveOption = {
+  onMouseenter: (this: HTMLElement, event: MouseEvent) => void;
+  onMouseleave: (this: HTMLElement, event: MouseEvent) => void;
+};
+
 export type TooltipDirective = (
   element: HTMLElement,
   accessor: () => {
     element: HTMLElement;
-    option?: {
-      optionString?: string;
-      optionNumber?: number;
-      optionFunction?: Function;
-    };
+    option?: TooltipDirectiveOption;
   }
 ) => void;
 
@@ -22,10 +23,6 @@ export type TooltipDirective = (
 export type TooltipDirectiveDeclaration = {
   tooltip: {
     element: JSX.Element | (() => JSX.Element);
-    option?: RequireAtLeastOne<{
-      optionString?: string;
-      optionNumber?: number;
-      optionFunction?: Function;
-    }>;
+    option?: RequireAtLeastOne<TooltipDirectiveOption>;
   };
 };
