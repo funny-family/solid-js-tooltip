@@ -34,11 +34,11 @@ export const App: Component = () => {
           // }}
           use:tooltip={{
             element: <div>Heeeeeey!</div>,
-            option: {
-              optionString: '',
-              optionNumber: 69,
-              optionFunction: () => {},
-            },
+            // option: {
+            //   optionString: '',
+            //   optionNumber: 69,
+            //   optionFunction: () => {},
+            // },
           }}
           style={{
             display: 'inline-block',
@@ -58,13 +58,18 @@ export const App: Component = () => {
         />
       </section>
       <section
-        style={{ 'max-width': '400px', 'margin-block-start': '10em' }}
+        style={{
+          'max-width': '400px',
+          'margin-block-start': '10em',
+          'border': '1px solid green',
+        }}
         use:tooltip={{
           element: (
             <div
               style={{
-                'top': 'calc(var(--tooltip-position-y) - 60px)',
+                'top': 'calc(var(--tooltip-parent-position-y) - 40px)',
                 'left': 'calc(var(--tooltip-parent-width) / 2)',
+                'transform': 'translateX(-50%)',
                 'background-color': 'bisque',
                 'padding': '0.4em',
                 'border-radius': '0.4rem',
@@ -73,6 +78,15 @@ export const App: Component = () => {
               This is text input!
             </div>
           ),
+          option: {
+            keepVisibleWhenHover: false,
+            onMouseenter: (event) => {
+              console.log(1111);
+            },
+            onMouseleave: (event) => {
+              console.log(2222);
+            },
+          },
         }}
       >
         <h1>Example 3</h1>
