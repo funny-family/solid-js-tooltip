@@ -6,6 +6,9 @@ import type { RequireAtLeastOne } from '../types';
 // };
 
 export type TooltipDirectiveOption = {
+  keepVisibleWhenHover: boolean;
+  displayOnFocus: boolean;
+  displayOnMouseenter: boolean;
   onMouseenter: (this: HTMLElement, event: MouseEvent) => void;
   onMouseleave: (this: HTMLElement, event: MouseEvent) => void;
 };
