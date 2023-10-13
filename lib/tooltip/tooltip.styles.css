@@ -9,15 +9,14 @@
 .solid-js-tooltip {
   display: block;
   position: absolute;
-  inset: 0;
   z-index: 999;
   box-sizing: border-box;
   visibility: visible;
 
-  /* top: var(--tooltip-parent-position-y);
-  left: var(--tooltip-parent-position-x); */
-  transform: translate(
+  top: var(--tooltip-parent-position-y);
+  left: var(--tooltip-parent-position-x);
+  /* transform: translate(
     var(--tooltip-parent-position-y),
     var(--tooltip-parent-position-x)
-  );
+  ); */
 }
