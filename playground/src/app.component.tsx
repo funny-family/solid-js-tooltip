@@ -1,4 +1,4 @@
-import type { Component } from 'solid-js';
+import { type Component, type JSX } from 'solid-js';
 import {
   type TooltipDirective,
   type TooltipDirectiveDeclaration,
@@ -14,14 +14,20 @@ tooltip;
 
 declare module 'solid-js' {
   namespace JSX {
-    interface Directives {
-      // tooltip: TooltipDirective;
-      // tooltip: [any, any];
-    }
+    // interface Directives {
+    //   // tooltip: TooltipDirective;
+    //   // tooltip: [any, any];
+    // }
 
     interface Directives extends TooltipDirectiveDeclaration {}
   }
 }
+
+const tooltipStyle: JSX.CSSProperties = {
+  'background-color': 'bisque',
+  'padding': '0.4em',
+  'border-radius': '0.4rem',
+};
 
 export const App: Component = () => {
   return (
@@ -33,7 +39,7 @@ export const App: Component = () => {
           //   //
           // }}
           use:tooltip={{
-            element: <div>Heeeeeey!</div>,
+            element: <div style={{ ...tooltipStyle }}>Heeeeeey!</div>,
             // option: {
             //   optionString: '',
             //   optionNumber: 69,
@@ -53,7 +59,7 @@ export const App: Component = () => {
           type="text"
           placeholder="Type here..."
           use:tooltip={{
-            element: <div>This is text input!</div>,
+            element: <div style={{ ...tooltipStyle }}>This is text input!</div>,
           }}
         />
       </section>
@@ -67,12 +73,10 @@ export const App: Component = () => {
           element: (
             <div
               style={{
-                'top': 'calc(var(--tooltip-parent-position-y) - 40px)',
-                'left': 'calc(var(--tooltip-parent-width) / 2)',
-                'transform': 'translateX(-50%)',
-                'background-color': 'bisque',
-                'padding': '0.4em',
-                'border-radius': '0.4rem',
+                // 'top': 'calc(var(--tooltip-parent-position-y) - 40px)',
+                // 'left': 'calc(var(--tooltip-parent-width) / 2)',
+                // 'transform': 'translateX(-50%)',
+                ...tooltipStyle,
               }}
             >
               This is text input!
@@ -110,7 +114,7 @@ export const App: Component = () => {
         >
           <h1
             use:tooltip={{
-              element: <div>This is tooltip!</div>,
+              element: <div style={{ ...tooltipStyle }}>This is tooltip!</div>,
             }}
           >
             Example 4
