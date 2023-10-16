@@ -9,16 +9,19 @@ export type TooltipDirectiveOption = {
   keepVisibleWhenHover: boolean;
   displayOnFocus: boolean;
   displayOnMouseenter: boolean;
+  position: 'top-center' | 'right-center' | 'bottom-center' | 'left-center';
   onMouseenter: (this: HTMLElement, event: MouseEvent) => void;
   onMouseleave: (this: HTMLElement, event: MouseEvent) => void;
 };
 
+export type TooltipDirectiveAccessor = () => {
+  element: HTMLElement;
+  option?: TooltipDirectiveOption;
+};
+
 export type TooltipDirective = (
   element: HTMLElement,
-  accessor: () => {
-    element: HTMLElement;
-    option?: TooltipDirectiveOption;
-  }
+  accessor: TooltipDirectiveAccessor
 ) => void;
 
 // type TooltipElement = JSX.Element | (() => JSX.Element);
