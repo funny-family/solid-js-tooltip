@@ -24,6 +24,7 @@ declare module 'solid-js' {
 }
 
 const tooltipStyle: JSX.CSSProperties = {
+  // 'display': 'inline-block',
   'background-color': 'bisque',
   'padding': '0.4em',
   'border-radius': '0.4rem',
@@ -35,16 +36,12 @@ export const App: Component = () => {
       <section style={{ margin: '0em' }}>
         <h1>Example 1</h1>
         <p
-          // use:tooltip={() => {
-          //   //
-          // }}
           use:tooltip={{
-            element: <div style={{ ...tooltipStyle }}>Heeeeeey!</div>,
-            // option: {
-            //   optionString: '',
-            //   optionNumber: 69,
-            //   optionFunction: () => {},
-            // },
+            element: (
+              <div>
+                <div style={{ ...tooltipStyle }}>Heeeeeey!</div>
+              </div>
+            ),
           }}
           style={{
             display: 'inline-block',
@@ -59,7 +56,11 @@ export const App: Component = () => {
           type="text"
           placeholder="Type here..."
           use:tooltip={{
-            element: <div style={{ ...tooltipStyle }}>This is text input!</div>,
+            element: (
+              <div>
+                <div style={{ ...tooltipStyle }}>This is text input!</div>
+              </div>
+            ),
           }}
         />
       </section>
@@ -71,24 +72,24 @@ export const App: Component = () => {
         }}
         use:tooltip={{
           element: (
-            <div
-              style={{
-                // 'top': 'calc(var(--tooltip-parent-position-y) - 40px)',
-                // 'left': 'calc(var(--tooltip-parent-width) / 2)',
-                // 'transform': 'translateX(-50%)',
-                ...tooltipStyle,
-              }}
-            >
-              This is text input!
+            <div>
+              <div
+                style={{
+                  ...tooltipStyle,
+                }}
+              >
+                Example 3!
+              </div>
             </div>
           ),
           option: {
-            keepVisibleWhenHover: false,
+            position: 'left-center',
+            // keepVisibleWhenHover: false,
             onMouseenter: (event) => {
-              console.log(1111);
+              // console.log(1111);
             },
             onMouseleave: (event) => {
-              console.log(2222);
+              // console.log(2222);
             },
           },
         }}
@@ -114,7 +115,20 @@ export const App: Component = () => {
         >
           <h1
             use:tooltip={{
-              element: <div style={{ ...tooltipStyle }}>This is tooltip!</div>,
+              element: (
+                <div>
+                  <div style={{ ...tooltipStyle }}>
+                    <p>This is tooltip!</p>
+                    <form action="">
+                      <input type="text" />
+                      <button type="submit">submit</button>
+                    </form>
+                  </div>
+                </div>
+              ),
+              option: {
+                position: 'bottom-center',
+              },
             }}
           >
             Example 4
