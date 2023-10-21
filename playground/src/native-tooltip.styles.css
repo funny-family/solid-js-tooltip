@@ -1,0 +1,92 @@
+.tooltipable {
+  /* pointer-events: none; */
+}
+
+/* .tooltipable:has(> .native-tooltip:active) {
+  color: pink;
+} */
+
+.tooltipable:is(:hover, :focus-visible, :active) > .native-tooltip {
+  /* ============================== */
+  opacity: 1;
+  visibility: visible;
+  content-visibility: visible;
+  /* ============================== */
+
+  /* transition-property: visibility;
+  transition-duration: 5s;
+  transition-delay: 2s; */
+}
+
+/* .tooltipable:hover > .native-tooltip {
+  transition-delay: 3s;
+} */
+
+.native-tooltip {
+  all: unset;
+
+  position: absolute;
+
+  /* ============================== */
+  opacity: 0;
+  visibility: hidden;
+  content-visibility: hidden;
+  /* ============================== */
+
+  outline: inherit;
+  cursor: auto;
+
+  transition: 0s;
+}
+
+/* .native-tooltip:is(:active) {
+  pointer-events: none;
+} */
+
+/* ================================================================================== */
+.tooltipable_top-center {
+  anchor-name: --top-center-anchor;
+}
+
+.native-tooltip_top-center {
+  bottom: anchor(--top-center-anchor top);
+  left: anchor(--top-center-anchor center);
+  translate: -50%;
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
+.tooltipable_right-center {
+  anchor-name: --right-center-anchor;
+}
+
+.native-tooltip_right-center {
+  top: anchor(--right-center-anchor center);
+  left: anchor(--right-center-anchor right);
+  translate: 0 -50%;
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
+.tooltipable_bottom-center {
+  anchor-name: --bottom-center-anchor;
+}
+
+.native-tooltip_bottom-center {
+  top: anchor(--bottom-center-anchor bottom);
+  left: anchor(--bottom-center-anchor center);
+  translate: -50%;
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
+.tooltipable_left-center {
+  anchor-name: --left-center-anchor;
+}
+
+.native-tooltip_left-center {
+  top: anchor(--left-center-anchor center);
+  right: anchor(--left-center-anchor left);
+  translate: 0 -50%;
+}
+/* ================================================================================== */
