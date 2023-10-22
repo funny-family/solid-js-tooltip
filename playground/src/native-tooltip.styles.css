@@ -2,41 +2,39 @@
   /* pointer-events: none; */
 }
 
-/* .tooltipable:has(> .native-tooltip:active) {
-  color: pink;
-} */
-
 .tooltipable:is(:hover, :focus-visible, :active) > .native-tooltip {
   /* ============================== */
-  opacity: 1;
   visibility: visible;
-  content-visibility: visible;
   /* ============================== */
-
-  /* transition-property: visibility;
-  transition-duration: 5s;
-  transition-delay: 2s; */
 }
-
-/* .tooltipable:hover > .native-tooltip {
-  transition-delay: 3s;
-} */
 
 .native-tooltip {
   all: unset;
-
+  display: block;
   position: absolute;
 
   /* ============================== */
-  opacity: 0;
   visibility: hidden;
-  content-visibility: hidden;
   /* ============================== */
 
   outline: inherit;
   cursor: auto;
 
-  transition: 0s;
+  transition: 0.1s;
+  /* pointer-events: none; */
+}
+
+.native-tooltip::before {
+  content: '; Has tooltip: ';
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
 }
 
 /* .native-tooltip:is(:active) {
