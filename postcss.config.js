@@ -5,6 +5,6 @@ import autoprefixer from 'autoprefixer';
  */
 
 /** @type {PostcssLoadConfig} */
-module.exports = {
+export default {
   plugins: [autoprefixer()],
 };
