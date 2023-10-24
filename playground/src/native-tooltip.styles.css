@@ -54,6 +54,29 @@
 /* ================================================================================== */
 
 /* ================================================================================== */
+.tooltipable_top-left-corner {
+  anchor-name: --top-left-corner;
+}
+
+.native-tooltip_top-left-corner {
+  bottom: anchor(--top-left-corner top);
+  left: anchor(--top-left-corner left);
+  translate: -100%;
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
+.tooltipable_top-left {
+  anchor-name: --top-left;
+}
+
+.native-tooltip_top-left {
+  bottom: anchor(--top-left top);
+  left: anchor(--top-left left);
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
 .tooltipable_right-center {
   anchor-name: --right-center-anchor;
 }
@@ -66,6 +89,51 @@
 /* ================================================================================== */
 
 /* ================================================================================== */
+.tooltipable_top-right {
+  anchor-name: --top-right;
+}
+
+.native-tooltip_top-right {
+  bottom: anchor(--top-right top);
+  right: anchor(--top-right right);
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
+.tooltipable_top-right-corner {
+  anchor-name: --top-right-corner;
+}
+
+.native-tooltip_top-right-corner {
+  bottom: anchor(--top-right-corner top);
+  right: anchor(--top-right-corner right);
+  translate: 100%;
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
+.tooltipable_bottom-left {
+  anchor-name: --bottom-left;
+}
+
+.native-tooltip_bottom-left {
+  /*  */
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
+.tooltipable_bottom-left-corner {
+  anchor-name: --bottom-left-corner;
+}
+
+.native-tooltip_bottom-left-corner {
+  bottom: anchor(--bottom-left-corner top);
+  left: anchor(--bottom-left-corner left);
+  translate: 100%;
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
 .tooltipable_bottom-center {
   anchor-name: --bottom-center-anchor;
 }
@@ -74,6 +142,26 @@
   top: anchor(--bottom-center-anchor bottom);
   left: anchor(--bottom-center-anchor center);
   translate: -50%;
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
+.tooltipable_bottom-left {
+  anchor-name: --bottom-left;
+}
+
+.native-tooltip_bottom-left {
+  /*  */
+}
+/* ================================================================================== */
+
+/* ================================================================================== */
+.tooltipable_bottom-left-corner {
+  anchor-name: --bottom-left-corner;
+}
+
+.native-tooltip_bottom-left-corner {
+  /*  */
 }
 /* ================================================================================== */
 
