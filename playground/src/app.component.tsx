@@ -396,33 +396,6 @@ export const App: Component = () => {
         <br />
 
         <section style={{ 'border': '2px solid red', 'margin-block': '6em' }}>
-          <h1>bottom-right</h1>
-          <a
-            class="tooltipable tooltipable_bottom-right"
-            href="#bottom-right"
-            style={{
-              'display': 'block',
-              'max-width': '300px',
-              'outline': '2px solid brown',
-            }}
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
-            dignissimos, iure doloribus inventore porro aperiam sequi
-            voluptates. Exercitationem, hic!
-            <div
-              class="native-tooltip native-tooltip_bottom-right"
-              style={{
-                ...tooltipStyle,
-              }}
-            >
-              Native tooltip! (bottom-right)
-            </div>
-          </a>
-        </section>
-
-        <br />
-
-        <section style={{ 'border': '2px solid red', 'margin-block': '6em' }}>
           <h1>bottom-right-corner</h1>
           <a
             class="tooltipable tooltipable_bottom-right-corner"
@@ -443,6 +416,33 @@ export const App: Component = () => {
               }}
             >
               Native tooltip! (bottom-right-corner)
+            </div>
+          </a>
+        </section>
+
+        <br />
+
+        <section style={{ 'border': '2px solid red', 'margin-block': '6em' }}>
+          <h1>bottom-right</h1>
+          <a
+            class="tooltipable tooltipable_bottom-right"
+            href="#bottom-right"
+            style={{
+              'display': 'block',
+              'max-width': '300px',
+              'outline': '2px solid brown',
+            }}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
+            dignissimos, iure doloribus inventore porro aperiam sequi
+            voluptates. Exercitationem, hic!
+            <div
+              class="native-tooltip native-tooltip_bottom-right"
+              style={{
+                ...tooltipStyle,
+              }}
+            >
+              Native tooltip! (bottom-right)
             </div>
           </a>
         </section>
