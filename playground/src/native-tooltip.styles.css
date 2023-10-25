@@ -156,28 +156,6 @@
 /* ================================================================================== */
 
 /* ================================================================================== */
-.tooltipable_bottom-left {
-  anchor-name: --bottom-left-anchor;
-}
-
-.native-tooltip_bottom-left {
-  /*  */
-}
-/* ================================================================================== */
-
-/* ================================================================================== */
-.tooltipable_bottom-left-corner {
-  anchor-name: --bottom-left-corner-anchor;
-}
-
-.native-tooltip_bottom-left-corner {
-  bottom: anchor(--bottom-left-corner-anchor top);
-  left: anchor(--bottom-left-corner-anchor left);
-  translate: 0 -100%;
-}
-/* ================================================================================== */
-
-/* ================================================================================== */
 .tooltipable_bottom-center {
   anchor-name: --bottom-center-anchor;
 }
@@ -195,7 +173,8 @@
 }
 
 .native-tooltip_bottom-left {
-  /*  */
+  top: anchor(--bottom-left-anchor bottom);
+  left: anchor(--bottom-left-anchor left);
 }
 /* ================================================================================== */
 
@@ -205,26 +184,23 @@
 }
 
 .native-tooltip_bottom-left-corner {
-  /*  */
-}
-/* ================================================================================== */
-
-/* ================================================================================== */
-/* left-bottom */
-/* ================================================================================== */
-
-/* ================================================================================== */
-.tooltipable_-bottom-left-center {
-  anchor-name: --bottom-left-corner-anchor;
-}
-
-.native-tooltip_bottom-left-corner {
   top: anchor(--bottom-left-corner-anchor bottom);
-  left: anchor(--bottom-left-corner-anchor left);
-  translate: -100%;
+  right: anchor(--bottom-left-corner-anchor left);
 }
 /* ================================================================================== */
 
+/* left-bottom */
+
 /* ================================================================================== */
+.tooltipable_left-center {
+  anchor-name: --left-center-anchor;
+}
+
+.native-tooltip_left-center {
+  top: anchor(--left-center-anchor center);
+  right: anchor(--left-center-anchor left);
+  translate: 0 -50%;
+}
+/* ================================================================================== */
+
 /* left-top */
-/* ================================================================================== */
