@@ -94,13 +94,19 @@
 
 .native-tooltip_top-right-corner {
   bottom: anchor(--top-right-corner-anchor top);
-  right: anchor(--top-right-corner-anchor right);
-  translate: 100%;
+  left: anchor(--top-right-corner-anchor right);
 }
 /* ================================================================================== */
 
 /* ================================================================================== */
-/* right-top */
+.tooltipable_right-top {
+  anchor-name: --right-top-anchor;
+}
+
+.native-tooltip_right-top {
+  top: anchor(--right-top-anchor top);
+  left: anchor(--right-top-anchor right);
+}
 /* ================================================================================== */
 
 /* ================================================================================== */
@@ -116,7 +122,14 @@
 /* ================================================================================== */
 
 /* ================================================================================== */
-/* right-bottom */
+.tooltipable_right-bottom {
+  anchor-name: --right-bottom-anchor;
+}
+
+.native-tooltip_right-bottom {
+  bottom: anchor(--right-bottom-anchor bottom);
+  left: anchor(--right-bottom-anchor right);
+}
 /* ================================================================================== */
 
 /* ================================================================================== */
