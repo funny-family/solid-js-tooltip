@@ -179,7 +179,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -206,7 +206,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -233,7 +233,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -265,7 +265,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -292,7 +292,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -319,7 +319,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -347,7 +347,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -375,7 +375,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -403,7 +403,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -430,7 +430,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -457,7 +457,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -485,7 +485,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -513,7 +513,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
@@ -541,7 +541,7 @@ export const App: Component = () => {
             style={{
               'display': 'block',
               'max-width': '300px',
-              'outline': '2px solid brown',
+              'border': '2px solid brown',
             }}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
