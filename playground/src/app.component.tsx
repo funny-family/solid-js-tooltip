@@ -534,6 +534,34 @@ export const App: Component = () => {
         <br />
 
         <section style={{ 'border': '2px solid red', 'margin-block': '6em' }}>
+          <h1>left-bottom</h1>
+          <a
+            class="tooltipable tooltipable_left-bottom"
+            href="#left-center"
+            style={{
+              'display': 'block',
+              'max-width': '300px',
+              'border': '2px solid brown',
+            }}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ad
+            dignissimos, iure doloribus inventore porro aperiam sequi
+            voluptates. Exercitationem, hic!
+            <div
+              class="native-tooltip native-tooltip_left-bottom"
+              style={{
+                ...tooltipStyle,
+                'margin-right': '0.4em',
+              }}
+            >
+              Native tooltip! (left-bottom)
+            </div>
+          </a>
+        </section>
+
+        <br />
+
+        <section style={{ 'border': '2px solid red', 'margin-block': '6em' }}>
           <h1>left-center</h1>
           <a
             class="tooltipable tooltipable_left-center"
