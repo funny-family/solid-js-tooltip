@@ -60,8 +60,7 @@
 
 .native-tooltip_top-left-corner {
   bottom: anchor(--top-left-corner-anchor top);
-  left: anchor(--top-left-corner-anchor left);
-  translate: -100%;
+  right: anchor(--top-left-corner-anchor left);
 }
 /* ================================================================================== */
 
@@ -150,8 +149,7 @@
 
 .native-tooltip_bottom-right-corner {
   top: anchor(--bottom-right-corner-anchor bottom);
-  right: anchor(--bottom-right-corner-anchor right);
-  translate: 100%;
+  left: anchor(--bottom-right-corner-anchor right);
 }
 /* ================================================================================== */
 
@@ -212,4 +210,13 @@
 }
 /* ================================================================================== */
 
-/* left-top */
+/* ================================================================================== */
+.tooltipable_left-top {
+  anchor-name: --left-top-anchor;
+}
+
+.native-tooltip_left-top {
+  top: anchor(--left-top-anchor top);
+  right: anchor(--left-top-anchor left);
+}
+/* ================================================================================== */
