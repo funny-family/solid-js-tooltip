@@ -91,12 +91,12 @@ export const App: Component = () => {
           option: {
             position: 'left-center',
             // keepVisibleWhenHover: false,
-            onMouseenter: (event) => {
-              // console.log(1111);
-            },
-            onMouseleave: (event) => {
-              // console.log(2222);
-            },
+            // onMouseenter: (event) => {
+            //   // console.log(1111);
+            // },
+            // onMouseleave: (event) => {
+            //   // console.log(2222);
+            // },
           },
         }}
       >
