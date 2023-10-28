@@ -37,10 +37,6 @@
   position: absolute;
 }
 
-/* .native-tooltip:is(:active) {
-  pointer-events: none;
-} */
-
 /* ================================================================================== */
 .tooltipable_top-center {
   anchor-name: --top-center-anchor;
