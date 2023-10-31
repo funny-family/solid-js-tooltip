@@ -21,7 +21,7 @@
   cursor: auto;
 
   transition: 0.1s;
-  /* pointer-events: none; */
+  pointer-events: none;
 }
 
 .native-tooltip::before {
@@ -216,3 +216,9 @@
   right: anchor(--left-top-anchor left);
 }
 /* ================================================================================== */
+
+/* [inert] {
+  user-focus: none !important;
+  user-select: none !important;
+  pointer-events: none !important;
+} */
