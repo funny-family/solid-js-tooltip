@@ -40,7 +40,16 @@ export const App: Component = () => {
         </h1>
         <h4>
           "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-          consectetur, adipisci velit..."
+          <u
+            use:tooltip={{
+              element: <Tooltip>"consectetur"</Tooltip>,
+              position: 'left-bottom',
+            }}
+            tabIndex={0}
+          >
+            consectetur
+          </u>
+          , adipisci velit..."
         </h4>
         <h5>
           "There is no one who loves pain itself, who seeks after it and wants
@@ -57,44 +66,81 @@ export const App: Component = () => {
                 diam augue, maximus ac nulla vel, tristique fermentum ligula.
                 Proin eu mollis dolor. Aliquam erat volutpat. Donec eget est
                 semper, sodales tortor non, blandit metus. Sed velit felis,
-                lobortis feugiat suscipit non, feugiat ac magna. Vestibulum
-                mollis pharetra est, a gravida dolor vehicula quis. Etiam
-                vestibulum id lorem congue faucibus. Morbi sit amet auctor
-                purus. Suspendisse potenti. Praesent ultricies auctor dui, in
-                pretium massa aliquam et. Maecenas ac pulvinar ipsum. Quisque
-                imperdiet pellentesque urna, eget pharetra urna tincidunt vitae.
-                Pellentesque ornare in metus et iaculis. Aenean nisi turpis,
-                dictum et tempus at, efficitur quis neque. Donec quis porttitor
-                justo. Mauris venenatis odio dui, et iaculis leo efficitur
-                sagittis.
+                lobortis feugiat suscipit{' '}
+                <b
+                  use:tooltip={{
+                    element: (
+                      <Tooltip style={{ width: '150px' }}>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Doloribus, provident?
+                      </Tooltip>
+                    ),
+                    position: 'top-center',
+                  }}
+                  tabIndex={0}
+                >
+                  non
+                </b>
+                , feugiat ac magna. Vestibulum mollis pharetra est, a gravida
+                dolor vehicula quis. Etiam vestibulum id lorem congue faucibus.
+                Morbi sit amet auctor purus. Suspendisse potenti. Praesent
+                ultricies auctor dui, in pretium massa aliquam et. Maecenas ac
+                pulvinar ipsum. Quisque imperdiet pellentesque urna, eget
+                pharetra urna tincidunt vitae. Pellentesque ornare in metus et
+                iaculis. Aenean nisi turpis, dictum et tempus at, efficitur quis
+                neque. Donec quis porttitor justo. Mauris venenatis odio dui, et
+                iaculis leo efficitur sagittis.
               </p>
               <p>
                 Pellentesque habitant morbi tristique senectus et netus et
                 malesuada fames ac turpis egestas. Aenean congue, libero eu
                 accumsan varius, mi sem posuere ex, nec mollis mauris urna non
-                felis. Etiam convallis lobortis eros vel feugiat. Duis pulvinar
-                euismod malesuada. Nullam rutrum dignissim consequat. Sed diam
-                nibh, posuere ac tempor non, venenatis in nisi. Etiam et
-                fringilla felis. Aenean in arcu vulputate tellus condimentum
-                interdum. Donec odio nisi, suscipit eget lobortis sed,
-                condimentum sed diam. Nullam eget erat id nulla ullamcorper
-                ultrices. Cras sodales diam augue, vel dictum metus lobortis
-                vitae. Morbi auctor nunc eu faucibus volutpat. Mauris porta
-                hendrerit est in tempus. Phasellus elementum nisi eu odio
-                malesuada aliquam. Sed imperdiet libero dignissim lorem
-                molestie, id porta velit faucibus. Aenean blandit justo nibh,
-                tristique accumsan magna consequat in.
+                felis.{' '}
+                <b
+                  use:tooltip={{
+                    element: <Tooltip>???</Tooltip>,
+                    position: 'right-center',
+                  }}
+                  tabIndex={0}
+                >
+                  Etiam
+                </b>{' '}
+                convallis lobortis eros vel feugiat. Duis pulvinar euismod
+                malesuada. Nullam rutrum dignissim consequat. Sed diam nibh,
+                posuere ac tempor non, venenatis in nisi. Etiam et fringilla
+                felis. Aenean in arcu vulputate tellus condimentum interdum.
+                Donec odio nisi, suscipit eget lobortis sed, condimentum sed
+                diam. Nullam eget erat id nulla ullamcorper ultrices. Cras
+                sodales diam augue, vel dictum metus lobortis vitae. Morbi
+                auctor nunc eu faucibus volutpat. Mauris porta hendrerit est in
+                tempus. Phasellus elementum nisi eu odio malesuada aliquam. Sed
+                imperdiet libero dignissim lorem molestie, id porta velit
+                faucibus. Aenean blandit justo nibh, tristique accumsan magna
+                consequat in.
               </p>
               <p>
-                Maecenas vitae pulvinar velit, ut maximus sem. Vivamus dolor
-                sem, molestie sit amet posuere sagittis, varius non urna. Sed
-                quis venenatis libero. Aenean elit enim, mollis iaculis ultrices
-                ac, semper nec arcu. Donec lorem magna, suscipit vitae porttitor
-                ut, luctus id leo. Etiam volutpat erat ac fermentum volutpat.
-                Donec aliquet sapien ac libero convallis, in viverra nisl
-                tincidunt. Aenean faucibus ac velit non pellentesque. Aliquam in
-                quam ac massa faucibus interdum eget non ipsum. Proin a nisl nec
-                lacus cursus scelerisque. Fusce consectetur condimentum blandit.
+                <b
+                  use:tooltip={{
+                    element: (
+                      <Tooltip style={{ width: '150px' }}>
+                        Lorem ipsum dolor sit amet.
+                      </Tooltip>
+                    ),
+                    position: 'top-right-corner',
+                  }}
+                  tabIndex={0}
+                >
+                  Maecenas
+                </b>{' '}
+                vitae pulvinar velit, ut maximus sem. Vivamus dolor sem,
+                molestie sit amet posuere sagittis, varius non urna. Sed quis
+                venenatis libero. Aenean elit enim, mollis iaculis ultrices ac,
+                semper nec arcu. Donec lorem magna, suscipit vitae porttitor ut,
+                luctus id leo. Etiam volutpat erat ac fermentum volutpat. Donec
+                aliquet sapien ac libero convallis, in viverra nisl tincidunt.
+                Aenean faucibus ac velit non pellentesque. Aliquam in quam ac
+                massa faucibus interdum eget non ipsum. Proin a nisl nec lacus
+                cursus scelerisque. Fusce consectetur condimentum blandit.
                 Curabitur sit amet lectus varius, varius diam at, facilisis
                 mauris. Pellentesque rutrum velit lectus, dapibus porta risus
                 luctus et.
