@@ -6,5 +6,11 @@
   font-size: 1.2rem;
   font-weight: 500;
   padding: 0.4em;
-  width: min-content;
+  max-width: 200px;
+}
+
+@supports(text-wrap: balance) {
+  .tltp {
+    text-wrap: balance;
+  }
 }
