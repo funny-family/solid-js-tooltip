@@ -53,7 +53,17 @@ export const App: Component = () => {
         </h4>
         <h5>
           "There is no one who loves pain itself, who seeks after it and wants
-          to have it, simply because it is pain..."
+          to have it, simply{' '}
+          <u
+            use:tooltip={{
+              element: <Tooltip>Eah... it is pain...</Tooltip>,
+              position: 'bottom-center',
+            }}
+            tabIndex={0}
+          >
+            because it is pain...
+          </u>
+          "
         </h5>
 
         <hr />
@@ -70,7 +80,7 @@ export const App: Component = () => {
                 <b
                   use:tooltip={{
                     element: (
-                      <Tooltip style={{ width: '150px' }}>
+                      <Tooltip>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Doloribus, provident?
                       </Tooltip>
@@ -121,11 +131,7 @@ export const App: Component = () => {
               <p>
                 <b
                   use:tooltip={{
-                    element: (
-                      <Tooltip style={{ width: '150px' }}>
-                        Lorem ipsum dolor sit amet.
-                      </Tooltip>
-                    ),
+                    element: <Tooltip>Lorem ipsum dolor sit amet.</Tooltip>,
                     position: 'top-right-corner',
                   }}
                   tabIndex={0}
@@ -155,8 +161,21 @@ export const App: Component = () => {
                 amet eleifend urna. Praesent volutpat posuere sapien eu
                 vulputate. Sed sapien urna, mattis ut nisi sed, dapibus placerat
                 lacus. Aliquam erat volutpat. Pellentesque dolor odio, molestie
-                vel convallis id, mollis euismod erat. In nisi nisl, rutrum eget
-                eros in, condimentum egestas nisl.
+                vel convallis id, mollis euismod erat. In{' '}
+                <b
+                  use:tooltip={{
+                    element: (
+                      <Tooltip>
+                        nisi nisl nisi nisl nisi nisl nisi nisl nisi nisl nisi
+                        nisl nisi nisl nisi nisl nisi nisl
+                      </Tooltip>
+                    ),
+                    position: 'bottom-right-corner',
+                  }}
+                >
+                  nisi nisl
+                </b>
+                , rutrum eget eros in, condimentum egestas nisl.
               </p>
               <p>
                 Nullam sem turpis, lobortis at interdum ac, dapibus eu lectus.
@@ -191,11 +210,19 @@ export const App: Component = () => {
                 nec, vestibulum sit amet eros.
               </p>
               <p>
-                Ut tempor purus eget faucibus facilisis. Morbi sed sollicitudin
-                leo. Praesent pretium at mauris non euismod. Pellentesque
-                dapibus enim nunc. Sed nulla dolor, vehicula a purus nec,
-                eleifend mollis nisi. Vestibulum vitae rutrum velit. Sed
-                scelerisque elit ac purus gravida, a facilisis nisl feugiat.
+                Ut tempor purus eget faucibus facilisis.{' '}
+                <b
+                  use:tooltip={{
+                    element: <Tooltip>I don't know what this about..</Tooltip>,
+                    position: 'bottom-right',
+                  }}
+                >
+                  Morbi sed sollicitudin leo. Praesent pretium at mauris non
+                  euismod.
+                </b>{' '}
+                Pellentesque dapibus enim nunc. Sed nulla dolor, vehicula a
+                purus nec, eleifend mollis nisi. Vestibulum vitae rutrum velit.
+                Sed scelerisque elit ac purus gravida, a facilisis nisl feugiat.
                 Aenean rhoncus dui sit amet convallis egestas. Integer porttitor
                 tristique purus, ac varius enim dapibus et. Praesent suscipit
                 risus eu velit semper, vitae aliquam tellus tristique. In
