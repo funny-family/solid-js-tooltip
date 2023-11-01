@@ -1,5 +1,10 @@
 .tltp {
-  border-radius: 2rem;
+  all: initial;
+  border-radius: 0.4rem;
   background-color: bisque;
   color: black;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.4em;
+  width: min-content;
 }
