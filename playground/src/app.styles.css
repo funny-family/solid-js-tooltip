@@ -18,8 +18,6 @@ dialog {
   height: 200px;
 }
 
-/* ===================================================================================== */
-
-#solid-js-tooltip-container {
-  position: absolute;
+.highlight-text {
+  color: hsl(0, 91%, 58%);
 }
