@@ -1,12 +1,6 @@
-import { type Component, type JSX } from 'solid-js';
-// import { NativeTooltips } from './components/native-tooltips/native-tooltips.component';
+import { type Component } from 'solid-js';
 import { Tooltip } from './components/tooltip/tooltip.component';
-import {
-  type TooltipDirective,
-  type TooltipDirectiveDeclaration,
-  // tooltip as __tooltip,
-  tooltip,
-} from './solid-js-tooltip';
+import { type TooltipDirectiveDeclaration, tooltip } from './solid-js-tooltip';
 import './solid-js-tooltip/styles.css';
 import './app.styles.css';
 
@@ -16,11 +10,6 @@ tooltip;
 
 declare module 'solid-js' {
   namespace JSX {
-    // interface Directives {
-    //   // tooltip: TooltipDirective;
-    //   // tooltip: [any, any];
-    // }
-
     interface Directives extends TooltipDirectiveDeclaration {}
   }
 }
@@ -29,18 +18,22 @@ export const App: Component = () => {
   return (
     <main>
       <div id="Inner">
-        <h1
-          use:tooltip={{
-            element: <Tooltip>This is heading!</Tooltip>,
-            position: 'top-left',
-          }}
-          tabIndex={0}
-        >
-          Lorem Ipsum
-        </h1>
+        <u>
+          <h1
+            class="highlight-text"
+            use:tooltip={{
+              element: <Tooltip>This is heading!</Tooltip>,
+              position: 'top-left',
+            }}
+            tabIndex={0}
+          >
+            Lorem Ipsum
+          </h1>
+        </u>
         <h4>
           "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
           <u
+            class="highlight-text"
             use:tooltip={{
               element: <Tooltip>"consectetur"</Tooltip>,
               position: 'left-bottom',
@@ -55,6 +48,7 @@ export const App: Component = () => {
           "There is no one who loves pain itself, who seeks after it and wants
           to have it, simply{' '}
           <u
+            class="highlight-text"
             use:tooltip={{
               element: <Tooltip>Eah... it is pain...</Tooltip>,
               position: 'bottom-center',
@@ -78,6 +72,7 @@ export const App: Component = () => {
                 semper, sodales tortor non, blandit metus. Sed velit felis,
                 lobortis feugiat suscipit{' '}
                 <b
+                  class="highlight-text"
                   use:tooltip={{
                     element: (
                       <Tooltip>
@@ -107,6 +102,7 @@ export const App: Component = () => {
                 accumsan varius, mi sem posuere ex, nec mollis mauris urna non
                 felis.{' '}
                 <b
+                  class="highlight-text"
                   use:tooltip={{
                     element: <Tooltip>???</Tooltip>,
                     position: 'right-center',
@@ -130,6 +126,7 @@ export const App: Component = () => {
               </p>
               <p>
                 <b
+                  class="highlight-text"
                   use:tooltip={{
                     element: <Tooltip>Lorem ipsum dolor sit amet.</Tooltip>,
                     position: 'top-right-corner',
@@ -163,6 +160,7 @@ export const App: Component = () => {
                 lacus. Aliquam erat volutpat. Pellentesque dolor odio, molestie
                 vel convallis id, mollis euismod erat. In{' '}
                 <b
+                  class="highlight-text"
                   use:tooltip={{
                     element: (
                       <Tooltip>
@@ -172,6 +170,7 @@ export const App: Component = () => {
                     ),
                     position: 'bottom-right-corner',
                   }}
+                  tabIndex={0}
                 >
                   nisi nisl
                 </b>
@@ -212,10 +211,12 @@ export const App: Component = () => {
               <p>
                 Ut tempor purus eget faucibus facilisis.{' '}
                 <b
+                  class="highlight-text"
                   use:tooltip={{
-                    element: <Tooltip>I don't know what this about..</Tooltip>,
+                    element: <Tooltip>I don't know what this about...</Tooltip>,
                     position: 'bottom-right',
                   }}
+                  tabIndex={0}
                 >
                   Morbi sed sollicitudin leo. Praesent pretium at mauris non
                   euismod.
@@ -257,20 +258,31 @@ export const App: Component = () => {
                 vel imperdiet volutpat. Pellentesque lobortis lorem a rhoncus
                 vulputate.
               </p>
-              <p>
-                Aenean et rutrum augue, a blandit magna. Praesent tincidunt
-                ullamcorper quam, vel facilisis urna. Pellentesque posuere sed
-                magna vitae vestibulum. Aliquam pharetra sodales molestie.
-                Quisque rhoncus enim nisl, ut malesuada dui blandit a. Quisque
-                euismod pellentesque tellus id fringilla. Pellentesque convallis
-                lorem nisl, ut pellentesque orci vestibulum in. Nulla facilisi.
-                Nunc ut turpis purus. Donec nec velit et dui congue maximus in
-                sed nisl. Sed quis nibh et erat viverra tempor. Etiam pretium
-                urna non finibus dapibus. Nam sed erat rutrum urna faucibus
-                posuere. In scelerisque ex eros, eget finibus neque finibus non.
-                Mauris in pharetra est. Praesent id ultricies sem, in tempus
-                quam.
-              </p>
+              <u>
+                <p
+                  class="highlight-text"
+                  use:tooltip={{
+                    element: (
+                      <Tooltip>I don't understand this part eather...</Tooltip>
+                    ),
+                    position: 'bottom-left',
+                  }}
+                  tabIndex={0}
+                >
+                  Aenean et rutrum augue, a blandit magna. Praesent tincidunt
+                  ullamcorper quam, vel facilisis urna. Pellentesque posuere sed
+                  magna vitae vestibulum. Aliquam pharetra sodales molestie.
+                  Quisque rhoncus enim nisl, ut malesuada dui blandit a. Quisque
+                  euismod pellentesque tellus id fringilla. Pellentesque
+                  convallis lorem nisl, ut pellentesque orci vestibulum in.
+                  Nulla facilisi. Nunc ut turpis purus. Donec nec velit et dui
+                  congue maximus in sed nisl. Sed quis nibh et erat viverra
+                  tempor. Etiam pretium urna non finibus dapibus. Nam sed erat
+                  rutrum urna faucibus posuere. In scelerisque ex eros, eget
+                  finibus neque finibus non. Mauris in pharetra est. Praesent id
+                  ultricies sem, in tempus quam.
+                </p>
+              </u>
               <p>
                 Aliquam vehicula lorem finibus felis tincidunt fringilla.
                 Suspendisse consectetur arcu sit amet nisi consequat, sit amet
@@ -326,21 +338,30 @@ export const App: Component = () => {
                 quis, blandit imperdiet turpis. Donec varius ac turpis id
                 pretium.
               </p>
-              <p>
-                Maecenas blandit arcu eget rutrum sodales. Vestibulum tempor mi
-                nec metus elementum fermentum. Aenean a gravida justo, nec
-                pharetra massa. In aliquet, eros a lobortis lacinia, neque nulla
-                pharetra ante, sit amet blandit ex sem at mauris. Sed at ornare
-                augue. Cras dapibus accumsan lectus laoreet accumsan.
-                Pellentesque tempus posuere mi id interdum. Nullam eget ante ut
-                eros porttitor porttitor sit amet eu dolor. Pellentesque non
-                metus erat. Mauris non odio commodo, volutpat dolor ut, aliquam
-                est. Curabitur vel dui nisl. In hac habitasse platea dictumst.
-                Phasellus malesuada, nisl ut consequat sagittis, lectus arcu
-                blandit urna, ac pharetra orci magna ut enim. Nunc ut justo in
-                tortor consequat auctor. Aliquam pulvinar arcu et lacus pretium
-                aliquam non eu magna.
-              </p>
+              <u
+                class="highlight-text"
+                use:tooltip={{
+                  element: <Tooltip>?</Tooltip>,
+                  position: 'bottom-left-corner',
+                }}
+                tabIndex={0}
+              >
+                <p>
+                  Maecenas blandit arcu eget rutrum sodales. Vestibulum tempor
+                  mi nec metus elementum fermentum. Aenean a gravida justo, nec
+                  pharetra massa. In aliquet, eros a lobortis lacinia, neque
+                  nulla pharetra ante, sit amet blandit ex sem at mauris. Sed at
+                  ornare augue. Cras dapibus accumsan lectus laoreet accumsan.
+                  Pellentesque tempus posuere mi id interdum. Nullam eget ante
+                  ut eros porttitor porttitor sit amet eu dolor. Pellentesque
+                  non metus erat. Mauris non odio commodo, volutpat dolor ut,
+                  aliquam est. Curabitur vel dui nisl. In hac habitasse platea
+                  dictumst. Phasellus malesuada, nisl ut consequat sagittis,
+                  lectus arcu blandit urna, ac pharetra orci magna ut enim. Nunc
+                  ut justo in tortor consequat auctor. Aliquam pulvinar arcu et
+                  lacus pretium aliquam non eu magna.
+                </p>
+              </u>
               <p>
                 Nunc hendrerit, neque a sagittis maximus, neque felis facilisis
                 lectus, et malesuada libero odio nec elit. Cras et posuere
