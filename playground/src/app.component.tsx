@@ -1,7 +1,6 @@
 import { type Component } from 'solid-js';
 import { Tooltip } from './components/tooltip/tooltip.component';
 import { type TooltipDirectiveDeclaration, tooltip } from './solid-js-tooltip';
-import './solid-js-tooltip/styles.css';
 import './app.styles.css';
 
 // https://github.com/solidjs/solid/discussions/845 (BE AWARE!!!)
