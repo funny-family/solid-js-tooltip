@@ -1,22 +1,37 @@
 import { type JSX } from 'solid-js';
 import type { RequireAtLeastOne } from '../types';
 
-// type TooltipAccessor<TElement extends HTMLElement> = () => {
-//   element: TElement;
-// };
+export type TooltipPosition =
+  | 'top-left-corner'
+  | 'top-left'
+  | 'top-center'
+  | 'top-right'
+  | 'top-right-corner'
+  | 'right-top'
+  | 'right-center'
+  | 'right-bottom'
+  | 'bottom-right-corner'
+  | 'bottom-right'
+  | 'bottom-center'
+  | 'bottom-left'
+  | 'bottom-left-corner'
+  | 'left-bottom'
+  | 'left-center'
+  | 'left-top';
 
 export type TooltipDirectiveOption = {
-  keepVisibleWhenHover: boolean;
-  displayOnFocus: boolean;
-  displayOnMouseenter: boolean;
-  position: 'top-center' | 'right-center' | 'bottom-center' | 'left-center';
-  onMouseenter: (this: HTMLElement, event: MouseEvent) => void;
-  onMouseleave: (this: HTMLElement, event: MouseEvent) => void;
+  // keepVisibleWhenHover: boolean;
+  // displayOnFocus: boolean;
+  // displayOnMouseenter: boolean;
+  // cacheRender: boolean;
+  position: TooltipPosition;
 };
 
+export type TooltipElement<TElement extends any> = TElement | (() => TElement);
+
 export type TooltipDirectiveAccessor = () => {
-  element: HTMLElement;
-  option?: TooltipDirectiveOption;
+  element: TooltipElement<HTMLElement>;
+  position?: TooltipPosition;
 };
 
 export type TooltipDirective = (
@@ -24,11 +39,17 @@ export type TooltipDirective = (
   accessor: TooltipDirectiveAccessor
 ) => void;
 
-// type TooltipElement = JSX.Element | (() => JSX.Element);
-
 export type TooltipDirectiveDeclaration = {
-  tooltip: {
-    element: JSX.Element | (() => JSX.Element);
-    option?: RequireAtLeastOne<TooltipDirectiveOption>;
-  };
+  tooltip: RequireAtLeastOne<{
+    element: TooltipElement<JSX.Element>;
+    position?: TooltipPosition;
+  }>;
 };
+
+/*
+  // programmatically toggle tooltip
+  {
+    showTooltip: () => void;
+    hideTooltip: () => void;
+  }
+*/
