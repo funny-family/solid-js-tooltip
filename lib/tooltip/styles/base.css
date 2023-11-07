@@ -1,0 +1,25 @@
+.solid-js-tooltip-container:is(:hover, :focus-visible, :active)
+  > .solid-js-tooltip {
+  visibility: visible;
+}
+
+.solid-js-tooltip {
+  position: absolute;
+  visibility: hidden;
+  outline: inherit;
+  cursor: auto;
+  transition: 0.1s;
+  pointer-events: none;
+}
+
+.solid-js-tooltip::before {
+  content: '; Has tooltip: ';
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
