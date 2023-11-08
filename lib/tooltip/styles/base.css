@@ -1,5 +1,9 @@
-.solid-js-tooltip-container:is(:hover, :focus-visible, :active)
-  > .solid-js-tooltip {
+.solid-js-tooltip-container:hover > .solid-js-tooltip_hoverable {
+  visibility: visible;
+}
+
+.solid-js-tooltip-container:is(:focus, :focus-visible, :active)
+  > .solid-js-tooltip_focusable {
   visibility: visible;
 }
 
@@ -10,6 +14,7 @@
   cursor: auto;
   transition: 0.1s;
   pointer-events: none;
+  z-index: 1;
 }
 
 .solid-js-tooltip::before {
