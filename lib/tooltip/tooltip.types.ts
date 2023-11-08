@@ -19,11 +19,21 @@ export type TooltipPosition =
   | 'left-center'
   | 'left-top';
 
+export type TooltipDirectiveDisplayOnHoverOption = {
+  displayOnHover: boolean;
+};
+
+export type TooltipDirectiveDisplayOnFocusOption = {
+  displayOnFocus: boolean;
+};
+
+export type TooltipDirectivePositionOption = {
+  position: TooltipPosition;
+};
+
 export type TooltipDirectiveOption = {
-  // keepVisibleWhenHover: boolean;
-  // displayOnFocus: boolean;
-  // displayOnMouseenter: boolean;
-  // cacheRender: boolean;
+  displayOnHover: boolean;
+  displayOnFocus: boolean;
   position: TooltipPosition;
 };
 
@@ -31,8 +41,9 @@ export type TooltipElement<TElement extends any> = TElement | (() => TElement);
 
 export type TooltipDirectiveAccessor = () => {
   element: TooltipElement<HTMLElement>;
-  position?: TooltipPosition;
-};
+} & Partial<TooltipDirectiveDisplayOnHoverOption> &
+  Partial<TooltipDirectiveDisplayOnFocusOption> &
+  Partial<TooltipDirectivePositionOption>;
 
 export type TooltipDirective = (
   element: HTMLElement,
@@ -40,16 +51,11 @@ export type TooltipDirective = (
 ) => void;
 
 export type TooltipDirectiveDeclaration = {
-  tooltip: RequireAtLeastOne<{
-    element: TooltipElement<JSX.Element>;
-    position?: TooltipPosition;
-  }>;
+  tooltip: RequireAtLeastOne<
+    {
+      element: TooltipElement<JSX.Element>;
+    } & Partial<TooltipDirectiveDisplayOnHoverOption> &
+      Partial<TooltipDirectiveDisplayOnFocusOption> &
+      Partial<TooltipDirectivePositionOption>
+  >;
 };
-
-/*
-  // programmatically toggle tooltip
-  {
-    showTooltip: () => void;
-    hideTooltip: () => void;
-  }
-*/
