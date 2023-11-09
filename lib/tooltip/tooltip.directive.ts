@@ -3,11 +3,7 @@ import type {
   TooltipDirectiveAccessor,
 } from './tooltip.types';
 
-var tooltipSharedZIndex = 0;
-
 export const tooltip = ((element, accessor) => {
-  tooltipSharedZIndex += 1;
-
   let accessorValue = accessor() as Required<
     ReturnType<TooltipDirectiveAccessor>
   >;
@@ -16,10 +12,14 @@ export const tooltip = ((element, accessor) => {
     typeof accessorValue.element === 'function'
       ? accessorValue.element()
       : accessorValue.element;
+  const tooltipDisplayOnHover = accessorValue?.displayOnHover || true;
+  const tooltipDisplayOnFocus = accessorValue?.displayOnFocus || true;
   const tooltipPosition = accessorValue?.position || 'top-left';
 
   accessorValue = {
     element: tooltipElement,
+    displayOnHover: tooltipDisplayOnHover,
+    displayOnFocus: tooltipDisplayOnFocus,
     position: tooltipPosition,
   };
 
@@ -34,17 +34,20 @@ export const tooltip = ((element, accessor) => {
   tooltipElement.setAttribute('inert', '');
   tooltipElement.setAttribute('aria-hidden', '');
   tooltipElement.setAttribute('tabindex', '-1');
-  tooltipElement.style.zIndex = `${tooltipSharedZIndex}`;
 
   element.classList.add(tooltipContainerClassName);
   element.appendChild(tooltipElement);
 
-  if ((accessorValue.position as string) !== '') {
-    element.classList.add(
-      `${tooltipContainerClassName}_${accessorValue.position}`
-    );
-    tooltipElement.classList.add(
-      `${tooltipClassName}_${accessorValue.position}`
-    );
+  element.classList.add(
+    `${tooltipContainerClassName}_${accessorValue.position}`
+  );
+  tooltipElement.classList.add(`${tooltipClassName}_${accessorValue.position}`);
+
+  if (accessorValue.displayOnHover) {
+    tooltipElement.classList.add('solid-js-tooltip_hoverable');
+  }
+
+  if (accessorValue.displayOnFocus) {
+    tooltipElement.classList.add('solid-js-tooltip_focusable');
   }
 }) as TooltipDirective;
