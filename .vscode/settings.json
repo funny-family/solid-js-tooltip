@@ -22,5 +22,11 @@
     "javascriptreact",
     "typescriptreact"
   ],
-  "cSpell.words": ["autoname", "hoverable", "labelledby", "tooltipable"]
+  "cSpell.words": [
+    "autoname",
+    "focusable",
+    "hoverable",
+    "labelledby",
+    "tooltipable"
+  ]
 }
