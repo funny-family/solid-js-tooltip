@@ -1,7 +1,7 @@
 {
   "name": "solid-js-tooltip",
   "private": false,
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "author": "funny-family <https://github.com/funny-family>",
   "repository": {
@@ -13,7 +13,14 @@
     "url": "https://github.com/funny-family/solid-js-tooltip/issues"
   },
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "solid",
+    "solid-js",
+    "solid-js-tooltip",
+    "tooltip",
+    "tooltips",
+    "popover"
+  ],
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -24,25 +31,37 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
-    "./style.css": "./dist/style.css"
+    "./styles.css": "./dist/styles/styles.css"
   },
   "files": [
     "dist"
   ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
+    "rl": "rollup -c",
     "dev": "concurrently \"rm -rf ./dist\" \"pnpm build:watch\"",
-    "build": "vite build",
+    "vite:build": "vite build",
+    "build": "./scripts/build.sh",
     "build:watch": "vite build --watch",
     "release": "release-it",
     "publish": "pnpm build && pnpm release"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
     "@types/node": "^20.6.3",
     "autoprefixer": "^10.4.16",
     "concurrently": "^8.2.1",
     "postcss": "^8.4.31",
     "postcss-load-config": "^4.0.1",
     "release-it": "^16.1.5",
+    "rollup": "^4.3.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-esbuild": "^6.1.0",
+    "rollup-plugin-postcss": "^4.0.2",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
     "vite-plugin-dts": "^3.5.3",
@@ -50,5 +69,8 @@
   },
   "peerDependencies": {
     "solid-js": "^1.7.12"
+  },
+  "dependencies": {
+    "rollup-plugin-copy": "^3.5.0"
   }
 }
