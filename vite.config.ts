@@ -1,15 +1,20 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import solidPlugin from 'vite-plugin-solid';
+import copy from 'rollup-plugin-copy';
+import postcss from 'rollup-plugin-postcss';
 import path from 'node:path';
 import pkg from './package.json';
 import tsconfig from './tsconfig.json';
 
+const pathResolve = (_path: string) => path.resolve(__dirname, _path);
+
 export default defineConfig({
+  publicDir: false,
   plugins: [
     dts({
       rollupTypes: true,
-      outDir: path.resolve(__dirname, './dist/types'),
+      outDir: pathResolve('./dist/types'),
     }),
     solidPlugin({
       include: 'lib/**/*',
@@ -18,11 +23,33 @@ export default defineConfig({
   ],
   build: {
     target: tsconfig.compilerOptions.target,
-    minify: false,
+    outDir: pathResolve('./dist'),
+    cssCodeSplit: true,
     sourcemap: true,
+    minify: false,
+    rollupOptions: {
+      external: Object.keys(pkg.peerDependencies),
+      output: {
+        preserveModules: false,
+        exports: 'named',
+        globals: {
+          'solid-js': 'solidJs',
+        },
+        plugins: [
+          postcss({
+            include: pathResolve('./lib/tooltip/styles/base.css'),
+            extract: pathResolve('./dist/styles/base.css'),
+            modules: true,
+          }),
+        ],
+        // assetFileNames: 'styles/styles.css',
+      },
+    },
+    emptyOutDir: false,
+    copyPublicDir: false,
     lib: {
-      entry: path.resolve(__dirname, './lib/tooltip/index.ts'),
       name: pkg.name,
+      entry: pathResolve('./lib/index.ts'),
       formats: ['es', 'cjs'],
       fileName: (format) => {
         if (format === 'es') {
@@ -36,15 +63,5 @@ export default defineConfig({
         return '';
       },
     },
-    rollupOptions: {
-      external: ['solid-js'],
-      output: {
-        exports: 'named',
-        globals: {
-          'solid-js': 'solidJs',
-        },
-      },
-    },
-    emptyOutDir: false,
   },
 });
