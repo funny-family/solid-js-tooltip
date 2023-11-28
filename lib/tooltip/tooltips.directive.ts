@@ -1,3 +1,4 @@
+import { onCleanup } from 'solid-js';
 import type { TooltipDirectiveAccessor } from './types';
 
 var tooltipContainer = document.createElement('div');
@@ -117,5 +118,139 @@ export var tooltips = ((element, accessor) => {
       tooltipable: element,
       option,
     });
+  });
+}) as TooltipsDirective;
+
+var toDefault = (option: ReturnType<Parameters<TooltipsDirective>[1]>[0]) => {
+  const tooltipElement =
+    typeof option.element === 'function' ? option.element() : option.element;
+  // ????
+  const tooltipDisplayOnHover = option?.displayOnHover ?? true;
+  // ????
+  const tooltipDisplayOnFocus = option?.displayOnFocus ?? true;
+  const tooltipPosition = option?.position || 'top-left';
+
+  option = {
+    element: tooltipElement,
+    displayOnHover: tooltipDisplayOnHover,
+    displayOnFocus: tooltipDisplayOnFocus,
+    position: tooltipPosition,
+  };
+};
+
+var unwrapElement = (element: HTMLElement | (() => HTMLElement)) =>
+  typeof element === 'function' ? element() : element;
+
+var positionTooltipRelativeToElement = (
+  tooltipable: HTMLElement,
+  tooltip: HTMLElement
+) => {
+  const rect = tooltipable.getBoundingClientRect();
+
+  tooltip.style.top = `${rect.top + window.scrollY}px`;
+  tooltip.style.left = `${rect.left + window.scrollX}px`;
+};
+
+export var tooltips1 = ((element, accessor) => {
+  const options = accessor() as Required<
+    ReturnType<Parameters<TooltipsDirective>[1]>
+  >;
+
+  const log = (event: Event): void => {
+    console.group(event.type);
+    console.log('target:', event.target);
+    console.log('rect:', (event.target as HTMLElement).getBoundingClientRect());
+    console.groupEnd();
+  };
+
+  options.forEach((option) => {
+    const tooltipElement = unwrapElement(option.element);
+    // ????
+    const tooltipDisplayOnHover = option?.displayOnHover ?? true;
+    // ????
+    const tooltipDisplayOnFocus = option?.displayOnFocus ?? true;
+    const tooltipPosition = option?.position || 'top-left';
+
+    tooltipElement.classList.add('solid-js-tooltip');
+    tooltipElement.setAttribute('role', 'tooltip');
+    tooltipElement.setAttribute('aria-labelledby', 'tooltip');
+    tooltipElement.setAttribute('inert', '');
+    tooltipElement.setAttribute('aria-hidden', '');
+    tooltipElement.setAttribute('tabindex', '-1');
+
+    tooltipElement.style.position = 'absolute';
+    tooltipElement.style.visibility = 'visible';
+
+    option = {
+      element: tooltipElement,
+      displayOnHover: tooltipDisplayOnHover,
+      displayOnFocus: tooltipDisplayOnFocus,
+      position: tooltipPosition,
+    };
+  });
+
+  const onMouseenter = (event: HTMLElementEventMap['mouseenter']): void => {
+    log(event);
+
+    options.forEach((option) => {
+      if (option.displayOnHover === false) {
+        return;
+      }
+
+      const tooltip = unwrapElement(option.element);
+
+      positionTooltipRelativeToElement(event.target as HTMLElement, tooltip);
+
+      // tooltipContainer.appendChild(tooltip);
+      document.body.appendChild(tooltip);
+    });
+  };
+
+  const onMouseleave = (event: HTMLElementEventMap['mouseleave']): void => {
+    log(event);
+
+    options.forEach((option) => {
+      if (option.displayOnHover === false) {
+        return;
+      }
+
+      // tooltipContainer.removeChild(unwrapElement(option.element));
+    });
+  };
+
+  const onFocusin = (event: HTMLElementEventMap['focusin']): void => {
+    log(event);
+
+    options.forEach((option) => {
+      if (option.displayOnFocus === false) {
+        return;
+      }
+
+      tooltipContainer.appendChild(unwrapElement(option.element));
+    });
+  };
+
+  const onFocusout = (event: HTMLElementEventMap['focusout']): void => {
+    log(event);
+
+    options.forEach((option) => {
+      if (option.displayOnFocus === false) {
+        return;
+      }
+
+      tooltipContainer.removeChild(unwrapElement(option.element));
+    });
+  };
+
+  element.addEventListener('mouseenter', onMouseenter);
+  element.addEventListener('mouseleave', onMouseleave);
+  element.addEventListener('focusin', onFocusin);
+  element.addEventListener('focusout', onFocusout);
+
+  onCleanup(() => {
+    element.removeEventListener('mouseenter', onMouseenter);
+    element.removeEventListener('mouseleave', onMouseleave);
+    element.removeEventListener('focusin', onFocusin);
+    element.removeEventListener('focusout', onFocusout);
   });
 }) as TooltipsDirective;
