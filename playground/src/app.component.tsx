@@ -1,11 +1,16 @@
 import { type Component } from 'solid-js';
 import { Tooltip } from './components/tooltip/tooltip.component';
-import { type TooltipsDirectiveDeclaration, tooltips } from './solid-js-tooltip';
+import {
+  type TooltipsDirectiveDeclaration,
+  tooltips,
+} from './solid-js-tooltip';
+import { tooltips1 } from '../../lib/tooltip/tooltips.directive';
 import './app.styles.css';
 
 // https://github.com/solidjs/solid/discussions/845 (BE AWARE!!!)
 // const tooltip = __tooltip;
 tooltips;
+tooltips1;
 
 type R = {
   tooltips: {
@@ -315,10 +320,21 @@ export const App: Component = () => {
                   tempor. Etiam pretium urna non finibus dapibus. Nam sed erat
                   rutrum urna faucibus posuere. In scelerisque ex eros, eget
                   finibus neque finibus non. Mauris in pharetra est. Praesent id
-                  ultricies sem, in tempus quam.
+                  ultricies sem, in tempus quam (222).
                 </p>
               </u>
-              <p>
+              <p
+                class="highlight-text"
+                use:tooltips1={[
+                  {
+                    element: (
+                      <Tooltip>I don't understand this part eather...</Tooltip>
+                    ),
+                    // position: 'bottom-left',
+                  },
+                ]}
+                tabIndex={0}
+              >
                 Aliquam vehicula lorem finibus felis tincidunt fringilla.
                 Suspendisse consectetur arcu sit amet nisi consequat, sit amet
                 tempus libero tincidunt. Donec aliquam, ex nec bibendum cursus,
@@ -331,7 +347,7 @@ export const App: Component = () => {
                 nisi ac massa sagittis bibendum. Donec id auctor mi, non
                 sagittis quam. Aenean blandit libero ut rhoncus auctor. Nulla
                 finibus orci et lacus accumsan, vel molestie augue vulputate.
-                Sed vitae facilisis elit, a euismod lorem.
+                Sed vitae facilisis elit, a euismod lorem11111.
               </p>
               <p>
                 Donec facilisis consequat eros. Praesent laoreet sed justo nec
