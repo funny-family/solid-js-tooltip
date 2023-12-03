@@ -215,7 +215,7 @@ export var tooltips1 = ((element, accessor) => {
 
       if (option.position === 'top-left') {
         tooltip.style.translate =
-          'calc(-100% - var(--margin-x)) calc(-100% - var(--margin-y))';
+          'calc(var(--margin-x)) calc(-100% - var(--margin-y))';
       }
 
       if (option.position === 'top-center') {
