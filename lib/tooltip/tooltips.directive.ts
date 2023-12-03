@@ -198,9 +198,83 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       const tooltip = unwrapElement(option.element);
+      const tooltipableRect = (
+        event.target as HTMLElement
+      ).getBoundingClientRect();
 
-      positionTooltipRelativeToElement(event.target as HTMLElement, tooltip);
+      tooltip.style.top = `${tooltipableRect.top + window.scrollY}px`;
+      tooltip.style.left = `${tooltipableRect.left + window.scrollX}px`;
 
+      tooltip.style.setProperty('--margin-x', '0px');
+      tooltip.style.setProperty('--margin-y', '0px');
+
+      if (option.position === 'top-left-corner') {
+        tooltip.style.translate =
+          'calc(-100% - var(--margin-x)) calc(-100% - var(--margin-y))';
+      }
+
+      if (option.position === 'top-left') {
+        tooltip.style.translate =
+          'calc(-100% - var(--margin-x)) calc(-100% - var(--margin-y))';
+      }
+
+      if (option.position === 'top-center') {
+        //
+      }
+
+      if (option.position === 'top-right') {
+        //
+      }
+
+      if (option.position === 'top-right-corner') {
+        //
+      }
+
+      if (option.position === 'right-top') {
+        //
+      }
+
+      if (option.position === 'right-center') {
+        //
+      }
+
+      if (option.position === 'right-bottom') {
+        //
+      }
+
+      if (option.position === 'bottom-right-corner') {
+        //
+      }
+
+      if (option.position === 'bottom-right') {
+        //
+      }
+
+      if (option.position === 'bottom-center') {
+        //
+      }
+
+      if (option.position === 'bottom-left') {
+        //
+      }
+
+      if (option.position === 'bottom-left-corner') {
+        //
+      }
+
+      if (option.position === 'left-bottom') {
+        //
+      }
+
+      if (option.position === 'left-center') {
+        //
+      }
+
+      if (option.position === 'left-top') {
+        //
+      }
+
+      // positionTooltipRelativeToElement(event.target as HTMLElement, tooltip);
       // tooltipContainer.appendChild(tooltip);
       document.body.appendChild(tooltip);
     });
