@@ -212,11 +212,14 @@ export var tooltips1 = ((element, accessor) => {
       tooltip.style.top = `${tooltipableRect.top + window.scrollY}px`;
       tooltip.style.left = `${tooltipableRect.left + window.scrollX}px`;
 
-      const tooltipableWidth = `0px` as const;
-      const tooltipableHeight = `0px` as const;
+      const tooltipableWidth = `${tooltipableRect.width}px` as const;
+      const tooltipableHeight = `${tooltipableRect.height}px` as const;
+      const tooltipDefaultMargin = '0px';
 
-      tooltip.style.setProperty(tooltipMarginX_CssVar, tooltipableWidth);
-      tooltip.style.setProperty(tooltipMarginY_CssVar, tooltipableHeight);
+      tooltip.style.setProperty(tooltipMarginX_CssVar, tooltipDefaultMargin);
+      tooltip.style.setProperty(tooltipMarginY_CssVar, tooltipDefaultMargin);
+      tooltip.style.setProperty(tooltipableWidth_CssVar, tooltipableWidth);
+      tooltip.style.setProperty(tooltipableHeight_CssVar, tooltipableHeight);
 
       if (option.position === 'top-left-corner') {
         tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
@@ -227,7 +230,7 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'top-center') {
-        //
+        tooltip.style.translate = `calc(var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'top-right') {
@@ -235,7 +238,7 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'top-right-corner') {
-        //
+        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'right-top') {
