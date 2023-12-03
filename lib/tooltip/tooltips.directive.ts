@@ -230,11 +230,11 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'top-center') {
-        tooltip.style.translate = `calc(var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
+        // tooltip.style.translate = `calc(100% - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'top-right') {
-        //
+        tooltip.style.translate = `calc(-100% + var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'top-right-corner') {
