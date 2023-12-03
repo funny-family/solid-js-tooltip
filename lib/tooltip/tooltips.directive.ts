@@ -242,7 +242,7 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'right-top') {
-        //
+        tooltip.style.translate = `var(${tooltipableWidth_CssVar}) var(${tooltipMarginY_CssVar})`;
       }
 
       if (option.position === 'right-center') {
