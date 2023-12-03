@@ -242,11 +242,11 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'right-top') {
-        tooltip.style.translate = `var(${tooltipableWidth_CssVar}) var(${tooltipMarginY_CssVar})`;
+        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) var(${tooltipMarginY_CssVar})`;
       }
 
       if (option.position === 'right-center') {
-        //
+        // tooltip.style.translate = `var(${tooltipableWidth_CssVar}) calc((var(${tooltipableHeight_CssVar}) / 2) - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'right-bottom') {
@@ -254,7 +254,7 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'bottom-right-corner') {
-        //
+        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginY_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'bottom-right') {
