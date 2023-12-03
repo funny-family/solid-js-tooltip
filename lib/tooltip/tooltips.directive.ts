@@ -151,6 +151,13 @@ var positionTooltipRelativeToElement = (
   tooltip.style.left = `${rect.left + window.scrollX}px`;
 };
 
+// ===============================================================================
+
+var tooltipMarginX_CssVar = '--tooltip-margin-x' as const;
+var tooltipMarginY_CssVar = '--tooltip-margin-y' as const;
+var tooltipableWidth_CssVar = '--tooltipable-width' as const;
+var tooltipableHeight_CssVar = '--tooltipable-height' as const;
+
 export var tooltips1 = ((element, accessor) => {
   const options = accessor() as Required<
     ReturnType<Parameters<TooltipsDirective>[1]>
@@ -205,17 +212,18 @@ export var tooltips1 = ((element, accessor) => {
       tooltip.style.top = `${tooltipableRect.top + window.scrollY}px`;
       tooltip.style.left = `${tooltipableRect.left + window.scrollX}px`;
 
-      tooltip.style.setProperty('--margin-x', '0px');
-      tooltip.style.setProperty('--margin-y', '0px');
+      const tooltipableWidth = `0px` as const;
+      const tooltipableHeight = `0px` as const;
+
+      tooltip.style.setProperty(tooltipMarginX_CssVar, tooltipableWidth);
+      tooltip.style.setProperty(tooltipMarginY_CssVar, tooltipableHeight);
 
       if (option.position === 'top-left-corner') {
-        tooltip.style.translate =
-          'calc(-100% - var(--margin-x)) calc(-100% - var(--margin-y))';
+        tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'top-left') {
-        tooltip.style.translate =
-          'calc(var(--margin-x)) calc(-100% - var(--margin-y))';
+        tooltip.style.translate = `calc(var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'top-center') {
@@ -328,3 +336,5 @@ export var tooltips1 = ((element, accessor) => {
     element.removeEventListener('focusout', onFocusout);
   });
 }) as TooltipsDirective;
+
+// ===============================================================================
