@@ -250,7 +250,7 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'right-bottom') {
-        //
+        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc((var(${tooltipableHeight_CssVar}) - 100%) - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'bottom-right-corner') {
