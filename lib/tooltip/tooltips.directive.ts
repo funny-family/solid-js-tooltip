@@ -282,7 +282,7 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'left-top') {
-        //
+        tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(var(${tooltipMarginY_CssVar}))`;
       }
 
       // positionTooltipRelativeToElement(event.target as HTMLElement, tooltip);
