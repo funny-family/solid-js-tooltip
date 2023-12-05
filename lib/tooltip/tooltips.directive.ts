@@ -254,7 +254,7 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'bottom-right-corner') {
-        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginY_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
+        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'bottom-right') {
@@ -270,7 +270,7 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'bottom-left-corner') {
-        //
+        // tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'left-bottom') {
