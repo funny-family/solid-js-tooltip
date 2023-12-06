@@ -278,7 +278,7 @@ export var tooltips1 = ((element, accessor) => {
       }
 
       if (option.position === 'left-center') {
-        //
+        tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(-50% + (var(${tooltipableHeight_CssVar}) / 2) - var(${tooltipMarginY_CssVar}))`;
       }
 
       if (option.position === 'left-top') {
