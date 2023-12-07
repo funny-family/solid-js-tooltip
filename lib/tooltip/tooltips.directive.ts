@@ -1,4 +1,4 @@
-import { onCleanup } from 'solid-js';
+import { onCleanup, children } from 'solid-js';
 import type { TooltipDirectiveAccessor } from './types';
 
 var tooltipContainer = document.createElement('div');
@@ -141,16 +141,6 @@ var toDefault = (option: ReturnType<Parameters<TooltipsDirective>[1]>[0]) => {
 var unwrapElement = (element: HTMLElement | (() => HTMLElement)) =>
   typeof element === 'function' ? element() : element;
 
-var positionTooltipRelativeToElement = (
-  tooltipable: HTMLElement,
-  tooltip: HTMLElement
-) => {
-  const rect = tooltipable.getBoundingClientRect();
-
-  tooltip.style.top = `${rect.top + window.scrollY}px`;
-  tooltip.style.left = `${rect.left + window.scrollX}px`;
-};
-
 // ===============================================================================
 
 var tooltipMarginX_CssVar = '--tooltip-margin-x' as const;
@@ -158,8 +148,94 @@ var tooltipMarginY_CssVar = '--tooltip-margin-y' as const;
 var tooltipableWidth_CssVar = '--tooltipable-width' as const;
 var tooltipableHeight_CssVar = '--tooltipable-height' as const;
 
+// var insertTooltip = (options)
+
+var setTooltipPosition = (
+  tooltip: HTMLElement,
+  position: TooltipPosition,
+  tooltipable: HTMLElement
+) => {
+  const tooltipableRect = tooltipable.getBoundingClientRect();
+
+  tooltip.style.top = `${tooltipableRect.top + window.scrollY}px`;
+  tooltip.style.left = `${tooltipableRect.left + window.scrollX}px`;
+
+  const tooltipableWidth = `${tooltipableRect.width}px` as const;
+  const tooltipableHeight = `${tooltipableRect.height}px` as const;
+  const tooltipDefaultMargin = '0px';
+
+  tooltip.style.setProperty(tooltipMarginX_CssVar, tooltipDefaultMargin);
+  tooltip.style.setProperty(tooltipMarginY_CssVar, tooltipDefaultMargin);
+  tooltip.style.setProperty(tooltipableWidth_CssVar, tooltipableWidth);
+  tooltip.style.setProperty(tooltipableHeight_CssVar, tooltipableHeight);
+
+  if (position === 'top-left-corner') {
+    tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'top-left') {
+    tooltip.style.translate = `calc(var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'top-center') {
+    tooltip.style.translate = `calc(-50% + (var(${tooltipableWidth_CssVar}) / 2) - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'top-right') {
+    tooltip.style.translate = `calc(-100% + var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'top-right-corner') {
+    tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'right-top') {
+    tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) var(${tooltipMarginY_CssVar})`;
+  }
+
+  if (position === 'right-center') {
+    tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(-50% + (var(${tooltipableHeight_CssVar}) / 2) - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'right-bottom') {
+    tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc((var(${tooltipableHeight_CssVar}) - 100%) - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'bottom-right-corner') {
+    tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'bottom-right') {
+    tooltip.style.translate = `calc(-100% + var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'bottom-center') {
+    tooltip.style.translate = `calc(-50% + (var(${tooltipableWidth_CssVar}) / 2) - var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'bottom-left') {
+    tooltip.style.translate = `calc(var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'bottom-left-corner') {
+    tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'left-bottom') {
+    tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc((var(${tooltipableHeight_CssVar}) - 100%) - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'left-center') {
+    tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(-50% + (var(${tooltipableHeight_CssVar}) / 2) - var(${tooltipMarginY_CssVar}))`;
+  }
+
+  if (position === 'left-top') {
+    tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(var(${tooltipMarginY_CssVar}))`;
+  }
+};
+
 export var tooltips1 = ((element, accessor) => {
-  const options = accessor() as Required<
+  let options = accessor() as Required<
     ReturnType<Parameters<TooltipsDirective>[1]>
   >;
 
@@ -170,154 +246,116 @@ export var tooltips1 = ((element, accessor) => {
     console.groupEnd();
   };
 
-  options.forEach((option) => {
-    const tooltipElement = unwrapElement(option.element);
+  const defaultOptions = options.reduce((accumulator, option, index) => {
+    const tooltipElement = children(
+      option.element as any
+    ) as unknown as () => HTMLElement;
     // ????
     const tooltipDisplayOnHover = option?.displayOnHover ?? true;
     // ????
     const tooltipDisplayOnFocus = option?.displayOnFocus ?? true;
     const tooltipPosition = option?.position || 'top-left';
 
-    tooltipElement.classList.add('solid-js-tooltip');
-    tooltipElement.setAttribute('role', 'tooltip');
-    tooltipElement.setAttribute('aria-labelledby', 'tooltip');
-    tooltipElement.setAttribute('inert', '');
-    tooltipElement.setAttribute('aria-hidden', '');
-    tooltipElement.setAttribute('tabindex', '-1');
+    tooltipElement().style.position = 'absolute';
+    tooltipElement().style.visibility = 'visible';
+    tooltipElement().classList.add('solid-js-tooltip');
+    tooltipElement().setAttribute('role', 'tooltip');
+    tooltipElement().setAttribute('aria-labelledby', 'tooltip');
+    tooltipElement().setAttribute('inert', '');
+    tooltipElement().setAttribute('aria-hidden', '');
+    tooltipElement().setAttribute('tabindex', '-1');
 
-    tooltipElement.style.position = 'absolute';
-    tooltipElement.style.visibility = 'visible';
-
-    option = {
+    accumulator[index] = {
       element: tooltipElement,
       displayOnHover: tooltipDisplayOnHover,
       displayOnFocus: tooltipDisplayOnFocus,
       position: tooltipPosition,
     };
-  });
+
+    return accumulator;
+  }, Array(options.length));
+
+  // options.forEach((option) => {
+  //   const tooltipElement = children(
+  //     option.element as any
+  //   ) as unknown as () => HTMLElement;
+  //   // ????
+  //   const tooltipDisplayOnHover = option?.displayOnHover ?? true;
+  //   // ????
+  //   const tooltipDisplayOnFocus = option?.displayOnFocus ?? true;
+  //   const tooltipPosition = option?.position || 'top-left';
+
+  //   tooltipElement().classList.add('solid-js-tooltip');
+  //   tooltipElement().setAttribute('role', 'tooltip');
+  //   tooltipElement().setAttribute('aria-labelledby', 'tooltip');
+  //   tooltipElement().setAttribute('inert', '');
+  //   tooltipElement().setAttribute('aria-hidden', '');
+  //   tooltipElement().setAttribute('tabindex', '-1');
+  //   tooltipElement().style.position = 'absolute';
+  //   tooltipElement().style.visibility = 'visible';
+
+  //   option = {
+  //     element: tooltipElement,
+  //     displayOnHover: tooltipDisplayOnHover,
+  //     displayOnFocus: tooltipDisplayOnFocus,
+  //     position: tooltipPosition,
+  //   };
+
+  //   // // ============= ?????? =============
+  //   // option.displayOnHover = tooltipDisplayOnHover;
+  //   // option.displayOnFocus = tooltipDisplayOnFocus;
+  //   // option.position = tooltipPosition;
+  //   // // ============= ?????? =============
+  // });
+
+  options = defaultOptions;
+
+  console.log({ options });
 
   const onMouseenter = (event: HTMLElementEventMap['mouseenter']): void => {
-    log(event);
-
+    // log(event);
     options.forEach((option) => {
       if (option.displayOnHover === false) {
         return;
       }
 
       const tooltip = unwrapElement(option.element);
-      const tooltipableRect = (
-        event.target as HTMLElement
-      ).getBoundingClientRect();
 
-      tooltip.style.top = `${tooltipableRect.top + window.scrollY}px`;
-      tooltip.style.left = `${tooltipableRect.left + window.scrollX}px`;
+      setTooltipPosition(tooltip, option.position, event.target as HTMLElement);
 
-      const tooltipableWidth = `${tooltipableRect.width}px` as const;
-      const tooltipableHeight = `${tooltipableRect.height}px` as const;
-      const tooltipDefaultMargin = '0px';
-
-      tooltip.style.setProperty(tooltipMarginX_CssVar, tooltipDefaultMargin);
-      tooltip.style.setProperty(tooltipMarginY_CssVar, tooltipDefaultMargin);
-      tooltip.style.setProperty(tooltipableWidth_CssVar, tooltipableWidth);
-      tooltip.style.setProperty(tooltipableHeight_CssVar, tooltipableHeight);
-
-      if (option.position === 'top-left-corner') {
-        tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'top-left') {
-        tooltip.style.translate = `calc(var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'top-center') {
-        tooltip.style.translate = `calc(-50% + (var(${tooltipableWidth_CssVar}) / 2) - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'top-right') {
-        tooltip.style.translate = `calc(-100% + var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'top-right-corner') {
-        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(-100% - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'right-top') {
-        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) var(${tooltipMarginY_CssVar})`;
-      }
-
-      if (option.position === 'right-center') {
-        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(-50% + (var(${tooltipableHeight_CssVar}) / 2) - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'right-bottom') {
-        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc((var(${tooltipableHeight_CssVar}) - 100%) - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'bottom-right-corner') {
-        tooltip.style.translate = `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'bottom-right') {
-        tooltip.style.translate = `calc(-100% + var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'bottom-center') {
-        tooltip.style.translate = `calc(-50% + (var(${tooltipableWidth_CssVar}) / 2) - var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'bottom-left') {
-        tooltip.style.translate = `calc(var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'bottom-left-corner') {
-        tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(var(${tooltipableHeight_CssVar}) - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'left-bottom') {
-        tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc((var(${tooltipableHeight_CssVar}) - 100%) - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'left-center') {
-        tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(-50% + (var(${tooltipableHeight_CssVar}) / 2) - var(${tooltipMarginY_CssVar}))`;
-      }
-
-      if (option.position === 'left-top') {
-        tooltip.style.translate = `calc(-100% - var(${tooltipMarginX_CssVar})) calc(var(${tooltipMarginY_CssVar}))`;
-      }
-
-      // positionTooltipRelativeToElement(event.target as HTMLElement, tooltip);
-      // tooltipContainer.appendChild(tooltip);
       document.body.appendChild(tooltip);
     });
   };
 
   const onMouseleave = (event: HTMLElementEventMap['mouseleave']): void => {
-    log(event);
-
+    // log(event);
     options.forEach((option) => {
       if (option.displayOnHover === false) {
         return;
       }
 
       // tooltipContainer.removeChild(unwrapElement(option.element));
+      document.body.removeChild(unwrapElement(option.element));
     });
   };
 
   const onFocusin = (event: HTMLElementEventMap['focusin']): void => {
-    log(event);
-
+    // log(event);
     options.forEach((option) => {
       if (option.displayOnFocus === false) {
         return;
       }
 
-      tooltipContainer.appendChild(unwrapElement(option.element));
+      const tooltip = unwrapElement(option.element);
+
+      setTooltipPosition(tooltip, option.position, event.target as HTMLElement);
+
+      document.body.appendChild(tooltip);
     });
   };
 
   const onFocusout = (event: HTMLElementEventMap['focusout']): void => {
-    log(event);
-
+    // log(event);
     options.forEach((option) => {
       if (option.displayOnFocus === false) {
         return;
