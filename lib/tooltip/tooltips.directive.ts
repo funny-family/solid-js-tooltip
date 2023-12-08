@@ -246,7 +246,7 @@ export var tooltips1 = ((element, accessor) => {
     console.groupEnd();
   };
 
-  const defaultOptions = options.reduce((accumulator, option, index) => {
+  const defaultOptions = options.map((option) => {
     const tooltipElement = children(
       option.element as any
     ) as unknown as () => HTMLElement;
@@ -265,49 +265,15 @@ export var tooltips1 = ((element, accessor) => {
     tooltipElement().setAttribute('aria-hidden', '');
     tooltipElement().setAttribute('tabindex', '-1');
 
-    accumulator[index] = {
+    return {
       element: tooltipElement,
       displayOnHover: tooltipDisplayOnHover,
       displayOnFocus: tooltipDisplayOnFocus,
       position: tooltipPosition,
     };
-
-    return accumulator;
-  }, Array(options.length));
-
-  // options.forEach((option) => {
-  //   const tooltipElement = children(
-  //     option.element as any
-  //   ) as unknown as () => HTMLElement;
-  //   // ????
-  //   const tooltipDisplayOnHover = option?.displayOnHover ?? true;
-  //   // ????
-  //   const tooltipDisplayOnFocus = option?.displayOnFocus ?? true;
-  //   const tooltipPosition = option?.position || 'top-left';
-
-  //   tooltipElement().classList.add('solid-js-tooltip');
-  //   tooltipElement().setAttribute('role', 'tooltip');
-  //   tooltipElement().setAttribute('aria-labelledby', 'tooltip');
-  //   tooltipElement().setAttribute('inert', '');
-  //   tooltipElement().setAttribute('aria-hidden', '');
-  //   tooltipElement().setAttribute('tabindex', '-1');
-  //   tooltipElement().style.position = 'absolute';
-  //   tooltipElement().style.visibility = 'visible';
-
-  //   option = {
-  //     element: tooltipElement,
-  //     displayOnHover: tooltipDisplayOnHover,
-  //     displayOnFocus: tooltipDisplayOnFocus,
-  //     position: tooltipPosition,
-  //   };
-
-  //   // // ============= ?????? =============
-  //   // option.displayOnHover = tooltipDisplayOnHover;
-  //   // option.displayOnFocus = tooltipDisplayOnFocus;
-  //   // option.position = tooltipPosition;
-  //   // // ============= ?????? =============
-  // });
-
+  });
+  // @ts-ignore
+  options = null;
   options = defaultOptions;
 
   console.log({ options });
