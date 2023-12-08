@@ -278,6 +278,23 @@ export var tooltips1 = ((element, accessor) => {
 
   console.log({ options });
 
+  const inEvent = <TEvent extends Event>(
+    event: TEvent,
+    option: Required<ReturnType<Parameters<TooltipsDirective>[1]>>[0]
+  ) => {
+    const tooltip = unwrapElement(option.element);
+
+    setTooltipPosition(tooltip, option.position, event.target as HTMLElement);
+
+    document.body.appendChild(tooltip);
+  };
+
+  const outEvent = (
+    option: Required<ReturnType<Parameters<TooltipsDirective>[1]>>[0]
+  ) => {
+    document.body.removeChild(unwrapElement(option.element));
+  };
+
   const onMouseenter = (event: HTMLElementEventMap['mouseenter']): void => {
     // log(event);
     options.forEach((option) => {
@@ -285,11 +302,7 @@ export var tooltips1 = ((element, accessor) => {
         return;
       }
 
-      const tooltip = unwrapElement(option.element);
-
-      setTooltipPosition(tooltip, option.position, event.target as HTMLElement);
-
-      document.body.appendChild(tooltip);
+      inEvent(event, option);
     });
   };
 
@@ -300,8 +313,7 @@ export var tooltips1 = ((element, accessor) => {
         return;
       }
 
-      // tooltipContainer.removeChild(unwrapElement(option.element));
-      document.body.removeChild(unwrapElement(option.element));
+      outEvent(option);
     });
   };
 
@@ -312,11 +324,7 @@ export var tooltips1 = ((element, accessor) => {
         return;
       }
 
-      const tooltip = unwrapElement(option.element);
-
-      setTooltipPosition(tooltip, option.position, event.target as HTMLElement);
-
-      document.body.appendChild(tooltip);
+      inEvent(event, option);
     });
   };
 
@@ -327,7 +335,7 @@ export var tooltips1 = ((element, accessor) => {
         return;
       }
 
-      tooltipContainer.removeChild(unwrapElement(option.element));
+      outEvent(option);
     });
   };
 
