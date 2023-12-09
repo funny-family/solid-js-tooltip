@@ -234,10 +234,26 @@ var setTooltipPosition = (
   }
 };
 
-export var tooltips1 = ((element, accessor) => {
-  let options = accessor() as Required<
-    ReturnType<Parameters<TooltipsDirective>[1]>
-  >;
+export var tooltips1 = (
+  element: HTMLElement,
+  accessor: () => {
+    tooltips: Array<{
+      element: HTMLElement | (() => HTMLElement);
+      position?: string;
+      displayOnHover?: false;
+      displayOnFocus?: false;
+    }>;
+    onMouseenter?: (event: Event) => void;
+    onMouseleave?: (event: Event) => void;
+    onFocusin?: (event: Event) => void;
+    onFocusout?: (event: Event) => void;
+  }
+) => {
+  // let options = accessor() as Required<
+  //   ReturnType<Parameters<TooltipsDirective>[1]>
+  // >;
+
+  console.log({ element, accessor: accessor() });
 
   const log = (event: Event): void => {
     console.group(event.type);
@@ -246,37 +262,37 @@ export var tooltips1 = ((element, accessor) => {
     console.groupEnd();
   };
 
-  const defaultOptions = options.map((option) => {
-    const tooltipElement = children(
-      option.element as any
-    ) as unknown as () => HTMLElement;
-    // ????
-    const tooltipDisplayOnHover = option?.displayOnHover ?? true;
-    // ????
-    const tooltipDisplayOnFocus = option?.displayOnFocus ?? true;
-    const tooltipPosition = option?.position || 'top-left';
+  // const defaultOptions = options.map((option) => {
+  //   const tooltipElement = children(
+  //     option.element as any
+  //   ) as unknown as () => HTMLElement;
+  //   // ????
+  //   const tooltipDisplayOnHover = option?.displayOnHover ?? true;
+  //   // ????
+  //   const tooltipDisplayOnFocus = option?.displayOnFocus ?? true;
+  //   const tooltipPosition = option?.position || 'top-left';
 
-    tooltipElement().style.position = 'absolute';
-    tooltipElement().style.visibility = 'visible';
-    tooltipElement().classList.add('solid-js-tooltip');
-    tooltipElement().setAttribute('role', 'tooltip');
-    tooltipElement().setAttribute('aria-labelledby', 'tooltip');
-    tooltipElement().setAttribute('inert', '');
-    tooltipElement().setAttribute('aria-hidden', '');
-    tooltipElement().setAttribute('tabindex', '-1');
+  //   tooltipElement().style.position = 'absolute';
+  //   tooltipElement().style.visibility = 'visible';
+  //   tooltipElement().classList.add('solid-js-tooltip');
+  //   tooltipElement().setAttribute('role', 'tooltip');
+  //   tooltipElement().setAttribute('aria-labelledby', 'tooltip');
+  //   tooltipElement().setAttribute('inert', '');
+  //   tooltipElement().setAttribute('aria-hidden', '');
+  //   tooltipElement().setAttribute('tabindex', '-1');
 
-    return {
-      element: tooltipElement,
-      displayOnHover: tooltipDisplayOnHover,
-      displayOnFocus: tooltipDisplayOnFocus,
-      position: tooltipPosition,
-    };
-  });
-  // @ts-ignore
-  options = null;
-  options = defaultOptions;
+  //   return {
+  //     element: tooltipElement,
+  //     displayOnHover: tooltipDisplayOnHover,
+  //     displayOnFocus: tooltipDisplayOnFocus,
+  //     position: tooltipPosition,
+  //   };
+  // });
+  // // @ts-ignore
+  // options = null;
+  // options = defaultOptions;
 
-  console.log({ options });
+  // console.log({ options });
 
   const inEvent = <TEvent extends Event>(
     event: TEvent,
@@ -295,7 +311,10 @@ export var tooltips1 = ((element, accessor) => {
     document.body.removeChild(unwrapElement(option.element));
   };
 
-  const onMouseenter = (event: HTMLElementEventMap['mouseenter']): void => {
+  const onMouseenter = function (
+    this: HTMLElement,
+    event: HTMLElementEventMap['mouseenter']
+  ): void {
     // log(event);
     options.forEach((option) => {
       if (option.displayOnHover === false) {
@@ -304,9 +323,16 @@ export var tooltips1 = ((element, accessor) => {
 
       inEvent(event, option);
     });
+
+    if (accessor()?.onMouseenter != null) {
+      accessor().onMouseenter!.bind(this)(event);
+    }
   };
 
-  const onMouseleave = (event: HTMLElementEventMap['mouseleave']): void => {
+  const onMouseleave = function (
+    this: HTMLElement,
+    event: HTMLElementEventMap['mouseleave']
+  ): void {
     // log(event);
     options.forEach((option) => {
       if (option.displayOnHover === false) {
@@ -315,9 +341,16 @@ export var tooltips1 = ((element, accessor) => {
 
       outEvent(option);
     });
+
+    if (accessor()?.onMouseleave != null) {
+      accessor().onMouseleave!.bind(this)(event);
+    }
   };
 
-  const onFocusin = (event: HTMLElementEventMap['focusin']): void => {
+  const onFocusin = function (
+    this: HTMLElement,
+    event: HTMLElementEventMap['focusin']
+  ): void {
     // log(event);
     options.forEach((option) => {
       if (option.displayOnFocus === false) {
@@ -326,9 +359,16 @@ export var tooltips1 = ((element, accessor) => {
 
       inEvent(event, option);
     });
+
+    if (accessor()?.onFocusin != null) {
+      accessor().onFocusin!.bind(this)(event);
+    }
   };
 
-  const onFocusout = (event: HTMLElementEventMap['focusout']): void => {
+  const onFocusout = function (
+    this: HTMLElement,
+    event: HTMLElementEventMap['focusout']
+  ): void {
     // log(event);
     options.forEach((option) => {
       if (option.displayOnFocus === false) {
@@ -337,6 +377,10 @@ export var tooltips1 = ((element, accessor) => {
 
       outEvent(option);
     });
+
+    if (accessor()?.onFocusout != null) {
+      accessor().onFocusout!.bind(this)(event);
+    }
   };
 
   element.addEventListener('mouseenter', onMouseenter);
@@ -350,6 +394,6 @@ export var tooltips1 = ((element, accessor) => {
     element.removeEventListener('focusin', onFocusin);
     element.removeEventListener('focusout', onFocusout);
   });
-}) as TooltipsDirective;
+};
 
 // ===============================================================================
