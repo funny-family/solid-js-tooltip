@@ -237,23 +237,21 @@ var setTooltipPosition = (
 export var tooltips1 = (
   element: HTMLElement,
   accessor: () => {
-    tooltips: Array<{
+    tooltips: {
       element: HTMLElement | (() => HTMLElement);
       position?: string;
       displayOnHover?: false;
       displayOnFocus?: false;
-    }>;
+    }[];
     onMouseenter?: (event: Event) => void;
     onMouseleave?: (event: Event) => void;
     onFocusin?: (event: Event) => void;
     onFocusout?: (event: Event) => void;
   }
 ) => {
-  // let options = accessor() as Required<
-  //   ReturnType<Parameters<TooltipsDirective>[1]>
-  // >;
+  const option = accessor();
 
-  console.log({ element, accessor: accessor() });
+  console.log({ element, option });
 
   const log = (event: Event): void => {
     console.group(event.type);
@@ -262,35 +260,38 @@ export var tooltips1 = (
     console.groupEnd();
   };
 
-  // const defaultOptions = options.map((option) => {
-  //   const tooltipElement = children(
-  //     option.element as any
-  //   ) as unknown as () => HTMLElement;
-  //   // ????
-  //   const tooltipDisplayOnHover = option?.displayOnHover ?? true;
-  //   // ????
-  //   const tooltipDisplayOnFocus = option?.displayOnFocus ?? true;
-  //   const tooltipPosition = option?.position || 'top-left';
+  const defaultTooltipsOption = option.tooltips.map((tooltipOption) => {
+    const tooltipElement = children(
+      tooltipOption.element as any
+    ) as unknown as () => HTMLElement;
+    // ????
+    const tooltipDisplayOnHover = tooltipOption?.displayOnHover ?? true;
+    // ????
+    const tooltipDisplayOnFocus = tooltipOption?.displayOnFocus ?? true;
+    const tooltipPosition = tooltipOption?.position || 'top-left';
 
-  //   tooltipElement().style.position = 'absolute';
-  //   tooltipElement().style.visibility = 'visible';
-  //   tooltipElement().classList.add('solid-js-tooltip');
-  //   tooltipElement().setAttribute('role', 'tooltip');
-  //   tooltipElement().setAttribute('aria-labelledby', 'tooltip');
-  //   tooltipElement().setAttribute('inert', '');
-  //   tooltipElement().setAttribute('aria-hidden', '');
-  //   tooltipElement().setAttribute('tabindex', '-1');
+    tooltipElement().style.position = 'absolute';
+    tooltipElement().style.visibility = 'visible';
+    tooltipElement().classList.add('solid-js-tooltip');
+    tooltipElement().setAttribute('role', 'tooltip');
+    tooltipElement().setAttribute('aria-labelledby', 'tooltip');
+    tooltipElement().setAttribute('inert', '');
+    tooltipElement().setAttribute('aria-hidden', '');
+    tooltipElement().setAttribute('tabindex', '-1');
 
-  //   return {
-  //     element: tooltipElement,
-  //     displayOnHover: tooltipDisplayOnHover,
-  //     displayOnFocus: tooltipDisplayOnFocus,
-  //     position: tooltipPosition,
-  //   };
-  // });
+    return {
+      element: tooltipElement,
+      displayOnHover: tooltipDisplayOnHover,
+      displayOnFocus: tooltipDisplayOnFocus,
+      position: tooltipPosition,
+    };
+  });
   // // @ts-ignore
-  // options = null;
-  // options = defaultOptions;
+  // option = null;
+  // option = defaultOption;
+
+  // @ts-ignore
+  option.tooltips = defaultTooltipsOption;
 
   // console.log({ options });
 
@@ -316,16 +317,17 @@ export var tooltips1 = (
     event: HTMLElementEventMap['mouseenter']
   ): void {
     // log(event);
-    options.forEach((option) => {
-      if (option.displayOnHover === false) {
+    option.tooltips.forEach((tooltipOption) => {
+      if (tooltipOption.displayOnHover === false) {
         return;
       }
 
-      inEvent(event, option);
+      // @ts-ignore
+      inEvent(event, tooltipOption);
     });
 
-    if (accessor()?.onMouseenter != null) {
-      accessor().onMouseenter!.bind(this)(event);
+    if (option?.onMouseenter != null) {
+      option.onMouseenter!.bind(this)(event);
     }
   };
 
@@ -334,16 +336,17 @@ export var tooltips1 = (
     event: HTMLElementEventMap['mouseleave']
   ): void {
     // log(event);
-    options.forEach((option) => {
-      if (option.displayOnHover === false) {
+    option.tooltips.forEach((tooltipOption) => {
+      if (tooltipOption.displayOnHover === false) {
         return;
       }
 
-      outEvent(option);
+      // @ts-ignore
+      outEvent(tooltipOption);
     });
 
-    if (accessor()?.onMouseleave != null) {
-      accessor().onMouseleave!.bind(this)(event);
+    if (option?.onMouseleave != null) {
+      option.onMouseleave!.bind(this)(event);
     }
   };
 
@@ -352,16 +355,17 @@ export var tooltips1 = (
     event: HTMLElementEventMap['focusin']
   ): void {
     // log(event);
-    options.forEach((option) => {
-      if (option.displayOnFocus === false) {
+    option.tooltips.forEach((tooltipOption) => {
+      if (tooltipOption.displayOnFocus === false) {
         return;
       }
 
-      inEvent(event, option);
+      // @ts-ignore
+      inEvent(event, tooltipOption);
     });
 
-    if (accessor()?.onFocusin != null) {
-      accessor().onFocusin!.bind(this)(event);
+    if (option?.onFocusin != null) {
+      option.onFocusin!.bind(this)(event);
     }
   };
 
@@ -370,16 +374,17 @@ export var tooltips1 = (
     event: HTMLElementEventMap['focusout']
   ): void {
     // log(event);
-    options.forEach((option) => {
-      if (option.displayOnFocus === false) {
+    option.tooltips.forEach((tooltipOption) => {
+      if (tooltipOption.displayOnFocus === false) {
         return;
       }
 
-      outEvent(option);
+      // @ts-ignore
+      outEvent(tooltipOption);
     });
 
-    if (accessor()?.onFocusout != null) {
-      accessor().onFocusout!.bind(this)(event);
+    if (option?.onFocusout != null) {
+      option.onFocusout!.bind(this)(event);
     }
   };
 
