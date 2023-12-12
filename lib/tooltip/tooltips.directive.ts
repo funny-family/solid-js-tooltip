@@ -121,23 +121,6 @@ export var tooltips = ((element, accessor) => {
   });
 }) as TooltipsDirective;
 
-var toDefault = (option: ReturnType<Parameters<TooltipsDirective>[1]>[0]) => {
-  const tooltipElement =
-    typeof option.element === 'function' ? option.element() : option.element;
-  // ????
-  const tooltipDisplayOnHover = option?.displayOnHover ?? true;
-  // ????
-  const tooltipDisplayOnFocus = option?.displayOnFocus ?? true;
-  const tooltipPosition = option?.position || 'top-left';
-
-  option = {
-    element: tooltipElement,
-    displayOnHover: tooltipDisplayOnHover,
-    displayOnFocus: tooltipDisplayOnFocus,
-    position: tooltipPosition,
-  };
-};
-
 var unwrapElement = (element: HTMLElement | (() => HTMLElement)) =>
   typeof element === 'function' ? element() : element;
 
@@ -147,8 +130,6 @@ var tooltipMarginX_CssVar = '--tooltip-margin-x' as const;
 var tooltipMarginY_CssVar = '--tooltip-margin-y' as const;
 var tooltipableWidth_CssVar = '--tooltipable-width' as const;
 var tooltipableHeight_CssVar = '--tooltipable-height' as const;
-
-// var insertTooltip = (options)
 
 var setTooltipPosition = (
   tooltip: HTMLElement,
@@ -234,6 +215,38 @@ var setTooltipPosition = (
   }
 };
 
+var createDefaultTooltipOption = (tooltipOption: {
+  element: HTMLElement | (() => HTMLElement);
+  position?: string;
+  displayOnHover?: false;
+  displayOnFocus?: false;
+}) => {
+  const tooltipElement = children(
+    tooltipOption.element as any
+  )() as HTMLElement;
+  const tooltipDisplayOnHover =
+    tooltipOption?.displayOnHover != null ? tooltipOption.displayOnHover : true;
+  const tooltipDisplayOnFocus =
+    tooltipOption?.displayOnFocus != null ? tooltipOption.displayOnFocus : true;
+  const tooltipPosition = tooltipOption?.position || 'top-left';
+
+  tooltipElement.style.position = 'absolute';
+  tooltipElement.style.visibility = 'visible';
+  tooltipElement.classList.add('solid-js-tooltip');
+  tooltipElement.setAttribute('role', 'tooltip');
+  tooltipElement.setAttribute('aria-labelledby', 'tooltip');
+  tooltipElement.setAttribute('inert', '');
+  tooltipElement.setAttribute('aria-hidden', '');
+  tooltipElement.setAttribute('tabindex', '-1');
+
+  return {
+    element: tooltipElement,
+    displayOnHover: tooltipDisplayOnHover,
+    displayOnFocus: tooltipDisplayOnFocus,
+    position: tooltipPosition,
+  };
+};
+
 export var tooltips1 = (
   element: HTMLElement,
   accessor: () => {
@@ -261,39 +274,11 @@ export var tooltips1 = (
   };
 
   const defaultTooltipsOption = option.tooltips.map((tooltipOption) => {
-    const tooltipElement = children(
-      tooltipOption.element as any
-    ) as unknown as () => HTMLElement;
-    // ????
-    const tooltipDisplayOnHover = tooltipOption?.displayOnHover ?? true;
-    // ????
-    const tooltipDisplayOnFocus = tooltipOption?.displayOnFocus ?? true;
-    const tooltipPosition = tooltipOption?.position || 'top-left';
-
-    tooltipElement().style.position = 'absolute';
-    tooltipElement().style.visibility = 'visible';
-    tooltipElement().classList.add('solid-js-tooltip');
-    tooltipElement().setAttribute('role', 'tooltip');
-    tooltipElement().setAttribute('aria-labelledby', 'tooltip');
-    tooltipElement().setAttribute('inert', '');
-    tooltipElement().setAttribute('aria-hidden', '');
-    tooltipElement().setAttribute('tabindex', '-1');
-
-    return {
-      element: tooltipElement,
-      displayOnHover: tooltipDisplayOnHover,
-      displayOnFocus: tooltipDisplayOnFocus,
-      position: tooltipPosition,
-    };
+    return createDefaultTooltipOption(tooltipOption);
   });
-  // // @ts-ignore
-  // option = null;
-  // option = defaultOption;
 
   // @ts-ignore
   option.tooltips = defaultTooltipsOption;
-
-  // console.log({ options });
 
   const inEvent = <TEvent extends Event>(
     event: TEvent,
