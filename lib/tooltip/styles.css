@@ -1,12 +1,3 @@
-.solid-js-tooltip-container:hover > .solid-js-tooltip_hoverable {
-  visibility: visible;
-}
-
-.solid-js-tooltip-container:is(:focus, :focus-visible, :active)
-  > .solid-js-tooltip_focusable {
-  visibility: visible;
-}
-
 .solid-js-tooltip {
   position: absolute;
   visibility: hidden;
