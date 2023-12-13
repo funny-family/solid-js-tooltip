@@ -1,8 +1,6 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import solidPlugin from 'vite-plugin-solid';
-import copy from 'rollup-plugin-copy';
-import postcss from 'rollup-plugin-postcss';
 import path from 'node:path';
 import pkg from './package.json';
 import tsconfig from './tsconfig.json';
@@ -35,14 +33,7 @@ export default defineConfig({
         globals: {
           'solid-js': 'solidJs',
         },
-        plugins: [
-          postcss({
-            include: pathResolve('./lib/tooltip/styles/base.css'),
-            extract: pathResolve('./dist/styles/base.css'),
-            modules: true,
-          }),
-        ],
-        // assetFileNames: 'styles/styles.css',
+        assetFileNames: 'styles/styles.css',
       },
     },
     emptyOutDir: false,
