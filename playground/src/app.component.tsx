@@ -1,27 +1,15 @@
 import { type Component } from 'solid-js';
 import { Tooltip } from './components/tooltip/tooltip.component';
-import {
-  type TooltipsDirectiveDeclaration,
-  tooltips,
-} from './solid-js-tooltip';
-import { tooltips1 } from '../../lib/tooltip/tooltips.directive';
+import { type TooltipDirective, tooltip } from './solid-js-tooltip';
 import './app.styles.css';
 
 // https://github.com/solidjs/solid/discussions/845 (BE AWARE!!!)
 // const tooltip = __tooltip;
-tooltips;
-tooltips1;
-
-type R = {
-  tooltips: {
-    element: any;
-    position?: string;
-  }[];
-};
+tooltip;
 
 declare module 'solid-js' {
   namespace JSX {
-    interface Directives extends TooltipsDirectiveDeclaration {}
+    interface Directives extends TooltipDirective {}
   }
 }
 
@@ -35,16 +23,18 @@ export const App: Component = () => {
             style={{
               display: 'inline-block',
             }}
-            use:tooltips={[
-              {
-                element: <Tooltip>This is heading!</Tooltip>,
-                position: 'top-left',
-              },
-              {
-                element: <Tooltip>Yeah, it is!</Tooltip>,
-                position: 'right-center',
-              },
-            ]}
+            use:tooltip={{
+              tooltips: [
+                {
+                  element: <Tooltip>This is heading!</Tooltip>,
+                  position: 'top-left',
+                },
+                {
+                  element: <Tooltip>Yeah, it is!</Tooltip>,
+                  position: 'right-center',
+                },
+              ],
+            }}
             tabIndex={0}
           >
             Lorem Ipsum
@@ -54,12 +44,14 @@ export const App: Component = () => {
           "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
           <u
             class="highlight-text"
-            use:tooltips={[
-              {
-                element: <Tooltip>"consectetur"</Tooltip>,
-                position: 'left-bottom',
-              },
-            ]}
+            use:tooltip={{
+              tooltips: [
+                {
+                  element: <Tooltip>"consectetur"</Tooltip>,
+                  position: 'left-bottom',
+                },
+              ],
+            }}
             tabIndex={0}
           >
             consectetur
@@ -71,12 +63,14 @@ export const App: Component = () => {
           to have it, simply{' '}
           <u
             class="highlight-text"
-            use:tooltips={[
-              {
-                element: <Tooltip>Eah... it is pain...</Tooltip>,
-                position: 'bottom-center',
-              },
-            ]}
+            use:tooltip={{
+              tooltips: [
+                {
+                  element: <Tooltip>Eah... it is pain...</Tooltip>,
+                  position: 'bottom-center',
+                },
+              ],
+            }}
             tabIndex={0}
           >
             because it is pain...
@@ -97,17 +91,19 @@ export const App: Component = () => {
                 lobortis feugiat suscipit{' '}
                 <b
                   class="highlight-text"
-                  use:tooltips={[
-                    {
-                      element: (
-                        <Tooltip>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Doloribus, provident?
-                        </Tooltip>
-                      ),
-                      position: 'top-center',
-                    },
-                  ]}
+                  use:tooltip={{
+                    tooltips: [
+                      {
+                        element: (
+                          <Tooltip>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Doloribus, provident?
+                          </Tooltip>
+                        ),
+                        position: 'top-center',
+                      },
+                    ],
+                  }}
                   tabIndex={0}
                 >
                   non
@@ -129,12 +125,14 @@ export const App: Component = () => {
                 felis.{' '}
                 <b
                   class="highlight-text"
-                  use:tooltips={[
-                    {
-                      element: <Tooltip>???</Tooltip>,
-                      position: 'right-center',
-                    },
-                  ]}
+                  use:tooltip={{
+                    tooltips: [
+                      {
+                        element: <Tooltip>???</Tooltip>,
+                        position: 'right-center',
+                      },
+                    ],
+                  }}
                   tabIndex={0}
                 >
                   Etiam
@@ -155,12 +153,14 @@ export const App: Component = () => {
               <p>
                 <b
                   class="highlight-text"
-                  use:tooltips={[
-                    {
-                      element: <Tooltip>Lorem ipsum dolor sit amet.</Tooltip>,
-                      position: 'top-right-corner',
-                    },
-                  ]}
+                  use:tooltip={{
+                    tooltips: [
+                      {
+                        element: <Tooltip>Lorem ipsum dolor sit amet.</Tooltip>,
+                        position: 'top-right-corner',
+                      },
+                    ],
+                  }}
                   tabIndex={0}
                 >
                   Maecenas
@@ -191,17 +191,19 @@ export const App: Component = () => {
                 vel convallis id, mollis euismod erat. In{' '}
                 <b
                   class="highlight-text"
-                  use:tooltips={[
-                    {
-                      element: (
-                        <Tooltip>
-                          nisi nisl nisi nisl nisi nisl nisi nisl nisi nisl nisi
-                          nisl nisi nisl nisi nisl nisi nisl
-                        </Tooltip>
-                      ),
-                      position: 'bottom-right-corner',
-                    },
-                  ]}
+                  use:tooltip={{
+                    tooltips: [
+                      {
+                        element: (
+                          <Tooltip>
+                            nisi nisl nisi nisl nisi nisl nisi nisl nisi nisl
+                            nisi nisl nisi nisl nisi nisl nisi nisl
+                          </Tooltip>
+                        ),
+                        position: 'bottom-right-corner',
+                      },
+                    ],
+                  }}
                   tabIndex={0}
                 >
                   nisi nisl
@@ -244,14 +246,16 @@ export const App: Component = () => {
                 Ut tempor purus eget faucibus facilisis.{' '}
                 <b
                   class="highlight-text"
-                  use:tooltips={[
-                    {
-                      element: (
-                        <Tooltip>I don't know what this about...</Tooltip>
-                      ),
-                      position: 'bottom-right',
-                    },
-                  ]}
+                  use:tooltip={{
+                    tooltips: [
+                      {
+                        element: (
+                          <Tooltip>I don't know what this about...</Tooltip>
+                        ),
+                        position: 'bottom-right',
+                      },
+                    ],
+                  }}
                   tabIndex={0}
                 >
                   Morbi sed sollicitudin leo. Praesent pretium at mauris non
@@ -297,16 +301,18 @@ export const App: Component = () => {
               <u>
                 <p
                   class="highlight-text"
-                  use:tooltips={[
-                    {
-                      element: (
-                        <Tooltip>
-                          I don't understand this part eather...
-                        </Tooltip>
-                      ),
-                      position: 'bottom-left',
-                    },
-                  ]}
+                  use:tooltip={{
+                    tooltips: [
+                      {
+                        element: (
+                          <Tooltip>
+                            I don't understand this part eather...
+                          </Tooltip>
+                        ),
+                        position: 'bottom-left',
+                      },
+                    ],
+                  }}
                   tabIndex={0}
                 >
                   Aenean et rutrum augue, a blandit magna. Praesent tincidunt
@@ -325,14 +331,34 @@ export const App: Component = () => {
               </u>
               <p
                 class="highlight-text"
-                use:tooltips1={[
-                  {
-                    element: (
-                      <Tooltip>I don't understand this part eather...</Tooltip>
-                    ),
-                    // position: 'bottom-left',
+                style={{ outline: '1px solid blue' }}
+                use:tooltip={{
+                  tooltips: [
+                    {
+                      element: (
+                        <Tooltip>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. In, dolor?
+                        </Tooltip>
+                      ),
+                      position: 'top-right',
+                      // displayOnHover: false,
+                      // displayOnFocus: false,
+                    },
+                  ],
+                  onMouseenter: (event) => {
+                    console.log('onMouseenter:', event);
                   },
-                ]}
+                  onMouseleave: (event) => {
+                    console.log('onMouseleave:', event);
+                  },
+                  onFocusin: (event) => {
+                    console.log('onFocusin:', event);
+                  },
+                  onFocusout: (event) => {
+                    console.log('onFocusout:', event);
+                  },
+                }}
                 tabIndex={0}
               >
                 Aliquam vehicula lorem finibus felis tincidunt fringilla.
@@ -391,12 +417,14 @@ export const App: Component = () => {
               </p>
               <u
                 class="highlight-text"
-                use:tooltips={[
-                  {
-                    element: <Tooltip>?</Tooltip>,
-                    position: 'bottom-left-corner',
-                  },
-                ]}
+                use:tooltip={{
+                  tooltips: [
+                    {
+                      element: <Tooltip>?</Tooltip>,
+                      position: 'bottom-left-corner',
+                    },
+                  ],
+                }}
                 tabIndex={0}
               >
                 <p>
