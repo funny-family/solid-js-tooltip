@@ -1,5 +1,4 @@
 import { type JSX } from 'solid-js';
-import type { RequireAtLeastOne } from '../types';
 
 export type TooltipPosition =
   | 'top-left-corner'
@@ -19,47 +18,36 @@ export type TooltipPosition =
   | 'left-center'
   | 'left-top';
 
-export type TooltipsDirectiveDisplayOnHoverOption = {
-  displayOnHover: boolean;
+type TooltipDirectiveOption_tooltip<TElement extends unknown> = {
+  element: TElement;
+  position?: TooltipPosition;
+  displayOnHover?: boolean;
+  displayOnFocus?: boolean;
 };
 
-export type TooltipsDirectiveDisplayOnFocusOption = {
-  displayOnFocus: boolean;
-};
-
-export type TooltipDirectivePositionOption = {
-  position: TooltipPosition;
-};
-
-export type TooltipsDirectiveOption = {
-  displayOnHover: boolean;
-  displayOnFocus: boolean;
-  position: TooltipPosition;
-};
-
-export type TooltipElement<TElement extends any> = TElement | (() => TElement);
-
-export type TooltipDirectiveAccessor = () => Array<
-  {
-    element: TooltipElement<HTMLElement>;
-  } & Partial<TooltipsDirectiveDisplayOnHoverOption> &
-    Partial<TooltipsDirectiveDisplayOnFocusOption> &
-    Partial<TooltipDirectivePositionOption>
->;
-
-export type TooltipsDirective = (
-  element: HTMLElement,
-  accessor: TooltipDirectiveAccessor
+type TooltipableEventCallback<TEventName extends keyof GlobalEventHandlersEventMap> = (
+  this: HTMLElement,
+  event: HTMLElementEventMap[TEventName]
 ) => void;
 
-export type TooltipsDirectiveDeclaration = {
-  tooltips: Array<
-    RequireAtLeastOne<
-      {
-        element: TooltipElement<JSX.Element>;
-      } & Partial<TooltipsDirectiveDisplayOnHoverOption> &
-        Partial<TooltipsDirectiveDisplayOnFocusOption> &
-        Partial<TooltipDirectivePositionOption>
-    >
-  >;
+export type TooltipDirectiveOption = {
+  tooltips: TooltipDirectiveOption_tooltip<JSX.Element>[];
+  onMouseenter?: TooltipableEventCallback<'mouseenter'>;
+  onMouseleave?: TooltipableEventCallback<'mouseleave'>;
+  onFocusin?: TooltipableEventCallback<'focusin'>;
+  onFocusout?: TooltipableEventCallback<'focusout'>;
 };
+
+// "use:tooltip={...}"
+export type TooltipDirective = {
+  tooltip: TooltipDirectiveOption;
+};
+
+export type TooltipDirectiveFunction = (
+  element: HTMLElement,
+  accessor: () => Omit<TooltipDirectiveOption, 'tooltips'> & {
+    tooltips: TooltipDirectiveOption_tooltip<
+      HTMLElement | (() => HTMLElement)
+    >[];
+  }
+) => void;

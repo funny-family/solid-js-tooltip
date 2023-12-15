@@ -1,4 +1,3 @@
-export { tooltips } from './tooltip/tooltips.directive';
+export { tooltip } from './tooltip/tooltip.directive';
 export * from './tooltip/types';
-// import './tooltip/styles/base.css';
-// import './tooltip/styles/position.css';
+import './tooltip/styles.css';
