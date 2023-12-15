@@ -18,20 +18,19 @@ export type TooltipPosition =
   | 'left-center'
   | 'left-top';
 
-type TooltipDirectiveOption_tooltip<TElement extends unknown> = {
+type TooltipOption<TElement = HTMLElement> = {
   element: TElement;
   position?: TooltipPosition;
   displayOnHover?: boolean;
   displayOnFocus?: boolean;
 };
 
-type TooltipableEventCallback<TEventName extends keyof GlobalEventHandlersEventMap> = (
-  this: HTMLElement,
-  event: HTMLElementEventMap[TEventName]
-) => void;
+type TooltipableEventCallback<
+  TEventName extends keyof GlobalEventHandlersEventMap
+> = (this: HTMLElement, event: HTMLElementEventMap[TEventName]) => void;
 
-export type TooltipDirectiveOption = {
-  tooltips: TooltipDirectiveOption_tooltip<JSX.Element>[];
+export type TooltipDirectiveOption<TElement = JSX.Element> = {
+  tooltips: TooltipOption<TElement>[];
   onMouseenter?: TooltipableEventCallback<'mouseenter'>;
   onMouseleave?: TooltipableEventCallback<'mouseleave'>;
   onFocusin?: TooltipableEventCallback<'focusin'>;
@@ -43,11 +42,14 @@ export type TooltipDirective = {
   tooltip: TooltipDirectiveOption;
 };
 
+export type TooltipDirectiveAccessorArg = Omit<
+  TooltipDirectiveOption,
+  'tooltips'
+> & {
+  tooltips: TooltipOption<HTMLElement | (() => HTMLElement)>[];
+};
+
 export type TooltipDirectiveFunction = (
   element: HTMLElement,
-  accessor: () => Omit<TooltipDirectiveOption, 'tooltips'> & {
-    tooltips: TooltipDirectiveOption_tooltip<
-      HTMLElement | (() => HTMLElement)
-    >[];
-  }
+  accessor: () => TooltipDirectiveAccessorArg
 ) => void;
