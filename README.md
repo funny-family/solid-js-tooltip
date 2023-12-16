@@ -6,7 +6,6 @@
 
 [![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-cc00ff.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
 
-Description
 <img width="100%" src="./public/tooltip-position.png" alt="Tooltip position explain.">
 
 ## Quick start
@@ -103,3 +102,16 @@ declare module 'solid-js' {
   elementum fermentum. Aenean a gravida justo, nec pharetra massa.
 </p>
 ```
+
+### Options:
+
+- `tooltips`: Required. Array of options for tooltip.
+  - `element`: Required. Element used as a tooltip.
+  - `position`: Optional. Tooltip position. Available positions: `top-left-corner`, `top-left`,
+    `top-center`, `top-right`, `top-right-corner`, `right-top`, `right-center`, `right-bottom`, `bottom-right-corner`, `bottom-right`, `bottom-center`, `bottom-left`, `bottom-left-corner`, `left-bottom`, `left-center`, `left-top`.
+  - `displayOnHover`: Optional. Controls whether a tooltip is displayed when hovering over an element.
+  - `displayOnFocus`: Optional. Controls whether a tooltip is displayed when focusing over an element.
+- `onMouseenter`: Optional. Event that occurs when the mouse pointer enters an element.
+- `onMouseleave`: Optional. Event that occurs when the mouse pointer leaves an element.
+- `onFocusin`: Optional. Event that occurs when an element gets focus.
+- `onFocusout`: Optional. Event that occurs when an element loses focus.
