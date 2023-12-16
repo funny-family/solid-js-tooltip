@@ -25,8 +25,6 @@ var createDefaultTooltipOption = (
     tooltipOption?.displayOnFocus != null ? tooltipOption.displayOnFocus : true;
   const tooltipPosition = tooltipOption?.position || 'top-left';
 
-  tooltipElement.style.position = 'absolute';
-  tooltipElement.style.visibility = 'visible';
   tooltipElement.classList.add('solid-js-tooltip');
   tooltipElement.setAttribute('role', 'tooltip');
   tooltipElement.setAttribute('aria-labelledby', 'tooltip');

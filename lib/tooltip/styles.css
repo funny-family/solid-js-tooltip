@@ -1,6 +1,5 @@
 .solid-js-tooltip {
   position: absolute;
-  visibility: hidden;
   outline: inherit;
   cursor: auto;
   transition: 0.1s;
