@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "solid-js": "^1.7.12",
-    "solid-js-tooltip": "file:../solid-js-tooltip-1.0.0.tgz"
+    "solid-js-tooltip": "file:../solid-js-tooltip-0.0.0.tgz",
+    "vite-plugin-inspect": "^0.8.1"
   }
 }

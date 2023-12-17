@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
+import inspect from 'vite-plugin-inspect'
 import solidDevtools from 'solid-devtools/vite';
 import path from 'node:path';
 
 export default defineConfig({
   base: './',
   plugins: [
+    inspect(),
     solidDevtools({
       autoname: true,
       locator: {

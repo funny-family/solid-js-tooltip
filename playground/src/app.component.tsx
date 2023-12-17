@@ -3,10 +3,6 @@ import { Tooltip } from './components/tooltip/tooltip.component';
 import { type TooltipDirective, tooltip } from './solid-js-tooltip';
 import './app.styles.css';
 
-// https://github.com/solidjs/solid/discussions/845 (BE AWARE!!!)
-// const tooltip = __tooltip;
-tooltip;
-
 declare module 'solid-js' {
   namespace JSX {
     interface Directives extends TooltipDirective {}
@@ -14,6 +10,9 @@ declare module 'solid-js' {
 }
 
 export const App: Component = () => {
+  // https://github.com/solidjs/solid/discussions/845 (BE AWARE!!!)
+  tooltip;
+
   return (
     <main>
       <div id="Inner">
