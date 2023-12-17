@@ -4,8 +4,8 @@ import type {
   TooltipDirectiveFunction,
   TooltipDirectiveOption,
   TooltipPosition,
-} from './types';
-import type { DeepRequired } from '../types';
+} from '../types';
+import type { DeepRequired } from '../../types';
 
 var tooltipMarginX_CssVar = '--tooltip-margin-x' as const;
 var tooltipMarginY_CssVar = '--tooltip-margin-y' as const;
