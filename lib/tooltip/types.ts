@@ -1,4 +1,5 @@
 import { type JSX } from 'solid-js';
+import type { NonEmpty } from '../types';
 
 export type TooltipPosition =
   | 'top-left-corner'
@@ -50,7 +51,7 @@ export type TooltipDirectiveOption<TElement = JSX.Element> = {
    * @description
    * Array of options for tooltip.
    */
-  tooltips: TooltipOption<TElement>[];
+  tooltips: NonEmpty<TooltipOption<TElement>[]>;
   /**
    * @description
    * Event that occurs when the mouse pointer enters an element.
