@@ -48,7 +48,6 @@ import { tooltip, Tooltip } from 'solid-js-tooltip';
 ...
 
 <p
-  class="highlight-text"
   use:tooltip={{
     tooltips: [
       {
@@ -73,7 +72,6 @@ import { tooltip, Tooltip } from 'solid-js-tooltip';
 ...
 
 <p
-  class="highlight-text"
   use:tooltip={{
     tooltips: [
       {
@@ -131,9 +129,53 @@ import { tooltip, Tooltip } from 'solid-js-tooltip';
 </p>
 ```
 
-### Options:
+```tsx
+import { type TooltipComponent, Tooltip as BaseTooltip } from 'solid-js-tooltip';
+import 'styles.css';
 
-- `tooltips`: Required. Array of options for tooltip.
+// You can use "Tooltip" component as base for your custom tooltip.
+export const Tooltip: TooltipComponent = (props) => {
+  return (
+    <BaseTooltip {...props} class={`${props?.class || ''} tooltip`}>
+      <div>
+        <div>
+          ...
+        </div>
+      </div>
+    </BaseTooltip>
+  )
+};
+
+...
+
+import { tooltip } from 'solid-js-tooltip';
+import { Tooltip } from './custom-tooltip-component-from-somewhere';
+
+<p
+  use:tooltip={{
+    tooltips: [
+      {
+        element: (
+          <Tooltip>
+            Hey! I am describing something...
+          </Tooltip>
+        ),
+        displayOnHover: false,
+      },
+    ],
+    onFocusin: (event) => {
+      console.log('"focusin" event:"', event);
+    },
+  }}
+  tabIndex={0}
+>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, suscipit?
+</p>
+```
+
+### Directive options:
+
+- `tooltips`: Required. Array of options for tooltip:
   - `element`: Required. Element used as a tooltip.
   - `position`: Optional. Tooltip position. Available positions: `top-left-corner`, `top-left`,
     `top-center`, `top-right`, `top-right-corner`, `right-top`, `right-center`, `right-bottom`, `bottom-right-corner`, `bottom-right`, `bottom-center`, `bottom-left`, `bottom-left-corner`, `left-bottom`, `left-center`, `left-top`.
@@ -143,3 +185,6 @@ import { tooltip, Tooltip } from 'solid-js-tooltip';
 - `onMouseleave`: Optional. Event that occurs when the mouse pointer leaves an element.
 - `onFocusin`: Optional. Event that occurs when an element gets focus.
 - `onFocusout`: Optional. Event that occurs when an element loses focus.
+
+### Component props:
+The `Tooltip` component has all the same attributes and events as the `HTMLDivElement`.
