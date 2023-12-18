@@ -24,7 +24,7 @@ pnpm add solid-js-tooltip
 
 ---
 
-### Usage:
+### Setup:
 
 ```ts
 import { type TooltipDirective, tooltip } from 'solid-js-tooltip';
@@ -43,12 +43,20 @@ declare module 'solid-js' {
 ### Examples:
 
 ```tsx
+import { tooltip, Tooltip } from 'solid-js-tooltip';
+
+...
+
 <p
   class="highlight-text"
   use:tooltip={{
     tooltips: [
       {
-        element: <div class="tooltip">Is this lorem?</div>,
+        element: (
+          <Tooltip class="tooltip">
+            Is this lorem?
+          </Tooltip>
+        ),
       },
     ],
   }}
@@ -60,16 +68,28 @@ declare module 'solid-js' {
 ```
 
 ```tsx
+import { tooltip, Tooltip } from 'solid-js-tooltip';
+
+...
+
 <p
   class="highlight-text"
   use:tooltip={{
     tooltips: [
       {
-        element: <div class="tooltip">What...</div>,
+        element: (
+          <Tooltip class="tooltip">
+            What...
+          </Tooltip>
+        ),
         position: 'top-center',
       },
       {
-        element: <div class="tooltip">is ... this...</div>,
+        element: (
+          <Tooltip class="tooltip">
+            is ... this...
+          </Tooltip>
+        ),
         position: 'right-center',
       },
     ],
@@ -83,12 +103,20 @@ declare module 'solid-js' {
 ```
 
 ```tsx
+import { tooltip, Tooltip } from 'solid-js-tooltip';
+
+...
+
 <p
   class="highlight-text"
   use:tooltip={{
     tooltips: [
       {
-        element: <div class="tooltip">Hey! I am describing something...</div>,
+        element: (
+          <Tooltip class="tooltip">
+            Hey! I am describing something...
+          </Tooltip>
+        ),
         displayOnHover: false,
       },
     ],
