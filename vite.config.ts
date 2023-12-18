@@ -1,18 +1,19 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import solidPlugin from 'vite-plugin-solid';
-import path from 'node:path';
+import url from 'node:url';
 import pkg from './package.json';
 import tsconfig from './tsconfig.json';
 
-const pathResolve = (_path: string) => path.resolve(__dirname, _path);
+const resolvePath = (p: string) =>
+  url.fileURLToPath(new URL(p, import.meta.url));
 
 export default defineConfig({
   publicDir: false,
   plugins: [
     dts({
       rollupTypes: true,
-      outDir: pathResolve('./dist/types'),
+      outDir: resolvePath('./dist/types'),
     }),
     solidPlugin({
       include: 'lib/**/*',
@@ -21,7 +22,7 @@ export default defineConfig({
   ],
   build: {
     target: tsconfig.compilerOptions.target,
-    outDir: pathResolve('./dist'),
+    outDir: resolvePath('./dist'),
     cssCodeSplit: true,
     sourcemap: true,
     minify: false,
@@ -40,7 +41,7 @@ export default defineConfig({
     copyPublicDir: false,
     lib: {
       name: pkg.name,
-      entry: pathResolve('./lib/index.ts'),
+      entry: resolvePath('./lib/index.ts'),
       formats: ['es', 'cjs'],
       fileName: (format) => {
         if (format === 'es') {
