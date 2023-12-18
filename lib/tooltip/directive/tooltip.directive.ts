@@ -4,7 +4,7 @@ import type {
   TooltipDirectiveFunction,
   TooltipDirectiveOption,
   TooltipPosition,
-} from '../types';
+} from './tooltip.directive.types';
 import type { DeepRequired } from '../../types';
 
 var tooltipMarginX_CssVar = '--tooltip-margin-x' as const;
@@ -24,29 +24,6 @@ var createDefaultTooltipOption = (
   const tooltipDisplayOnFocus =
     tooltipOption?.displayOnFocus != null ? tooltipOption.displayOnFocus : true;
   const tooltipPosition = tooltipOption?.position || 'top-left';
-
-  tooltipElement.classList.add('solid-js-tooltip');
-
-  tooltipElement.role == null
-    ? tooltipElement.setAttribute('role', 'tooltip')
-    : undefined;
-
-  const ariaLabelledbyAttrName = 'aria-labelledby' as const;
-  tooltipElement.getAttribute(ariaLabelledbyAttrName) == null
-    ? tooltipElement.setAttribute(ariaLabelledbyAttrName, 'tooltip')
-    : undefined;
-
-  tooltipElement.inert == null
-    ? tooltipElement.setAttribute('inert', '')
-    : undefined;
-
-  tooltipElement.ariaHidden == null
-    ? tooltipElement.setAttribute('aria-hidden', 'true')
-    : undefined;
-
-  tooltipElement.tabIndex == null
-    ? tooltipElement.setAttribute('tabindex', '-1')
-    : undefined;
 
   return {
     element: tooltipElement,

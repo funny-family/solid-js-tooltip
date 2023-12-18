@@ -1,5 +1,5 @@
 import { type JSX } from 'solid-js';
-import type { NonEmpty } from '../types';
+import type { NonEmpty } from '../../types';
 
 export type TooltipPosition =
   | 'top-left-corner'
