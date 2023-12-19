@@ -144,7 +144,11 @@ export const tooltip = ((element, accessor) => {
       ReturnType<Parameters<TooltipDirectiveFunction>[1]>['tooltips'][0]
     >
   ) => {
-    document.body.removeChild(unwrapElement(option.element));
+    const tooltip = unwrapElement(option.element);
+
+    if (tooltip != null) {
+      document.body.removeChild(tooltip);
+    }
   };
 
   const onMouseenter: NonNullable<TooltipDirectiveOption['onMouseenter']> =
