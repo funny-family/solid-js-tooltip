@@ -1,12 +1,14 @@
-import { type Component, type JSX } from 'solid-js';
+import {
+  type TooltipComponent,
+  Tooltip as BaseTooltip,
+} from '../../solid-js-tooltip';
 import './tooltip.styles.css';
 
-export const Tooltip: Component<JSX.HTMLAttributes<HTMLDivElement>> = (
-  props
-) => {
+export const Tooltip: TooltipComponent = (attrsAndProps) => {
   return (
-    <div {...props} class={`${props?.class || ''} tltp`}>
-      {props?.children}
-    </div>
+    <BaseTooltip
+      {...attrsAndProps}
+      class={`${attrsAndProps?.class || ''} tltp`}
+    />
   );
 };

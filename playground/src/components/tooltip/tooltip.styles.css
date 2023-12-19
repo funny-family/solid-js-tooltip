@@ -1,5 +1,5 @@
 .tltp {
-  all: initial;
+  /* all: initial; */
   border-radius: 0.4rem;
   background-color: bisque;
   color: black;
@@ -9,7 +9,7 @@
   max-width: 200px;
 }
 
-@supports(text-wrap: balance) {
+@supports (text-wrap: balance) {
   .tltp {
     text-wrap: balance;
   }

@@ -1,8 +1,11 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
-import inspect from 'vite-plugin-inspect'
+import inspect from 'vite-plugin-inspect';
 import solidDevtools from 'solid-devtools/vite';
-import path from 'node:path';
+import url from 'node:url';
+
+const resolvePath = (p: string) =>
+  url.fileURLToPath(new URL(p, import.meta.url));
 
 export default defineConfig({
   base: './',
@@ -17,13 +20,18 @@ export default defineConfig({
       },
     }),
     solidPlugin({
-      include: ['src/**/*', path.resolve(__dirname, '../lib/**/*')],
+      include: ['src/**/*', resolvePath('../lib/**/*')],
       extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
   ],
+  resolve: {
+    alias: {
+      '@src': resolvePath('./src/'),
+    },
+  },
   build: {
     target: 'esnext',
-    outDir: path.resolve(__dirname, '../docs'),
+    outDir: resolvePath('../docs'),
   },
   server: {
     port: 1238,
