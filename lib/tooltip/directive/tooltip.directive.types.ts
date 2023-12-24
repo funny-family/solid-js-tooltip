@@ -42,9 +42,13 @@ type TooltipOption<TElement = HTMLElement> = {
   displayOnFocus?: boolean;
 };
 
-type TooltipableEventCallback<
+export type TooltipableEventCallback<
   TEventName extends keyof GlobalEventHandlersEventMap
-> = (this: HTMLElement, event: HTMLElementEventMap[TEventName]) => void;
+> = (
+  this: HTMLElement,
+  event: HTMLElementEventMap[TEventName],
+  listener: (event: HTMLElementEventMap[TEventName]) => any
+) => void;
 
 export type TooltipDirectiveOption<TElement = JSX.Element> = {
   /**
