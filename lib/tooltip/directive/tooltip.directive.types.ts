@@ -1,5 +1,5 @@
-import { type JSX } from 'solid-js';
-import type { NonEmpty } from '../../types';
+import type { JSX } from 'solid-js';
+import type { NonEmpty, RequireAtLeastOne } from '../../types';
 
 export type TooltipPosition =
   | 'top-left-corner'
@@ -42,13 +42,22 @@ type TooltipOption<TElement = HTMLElement> = {
   displayOnFocus?: boolean;
 };
 
-export type TooltipableEventCallback<
-  TEventName extends keyof GlobalEventHandlersEventMap
+type GlobalEventHandlersEventMapKey = keyof GlobalEventHandlersEventMap;
+
+export type ListenerCallback<
+  TEventName extends GlobalEventHandlersEventMapKey
 > = (
   this: HTMLElement,
   event: HTMLElementEventMap[TEventName],
   listener: (event: HTMLElementEventMap[TEventName]) => any
 ) => void;
+
+export type ListenerObject<TEventName extends GlobalEventHandlersEventMapKey> =
+  {
+    listener?: ListenerCallback<TEventName>;
+    addEventListenerOptions?: boolean | AddEventListenerOptions;
+    removeEventListenerOptions?: boolean | EventListenerOptions;
+  };
 
 export type TooltipDirectiveOption<TElement = JSX.Element> = {
   /**
@@ -60,22 +69,22 @@ export type TooltipDirectiveOption<TElement = JSX.Element> = {
    * @description
    * Event that occurs when the mouse pointer enters an element.
    */
-  onMouseenter?: TooltipableEventCallback<'mouseenter'>;
+  onMouseenter?: RequireAtLeastOne<ListenerObject<'mouseenter'>>;
   /**
    * @description
    * Event that occurs when the mouse pointer leaves an element.
    */
-  onMouseleave?: TooltipableEventCallback<'mouseleave'>;
+  onMouseleave?: RequireAtLeastOne<ListenerObject<'mouseleave'>>;
   /**
    * @description
    * Event that occurs when an element gets focus.
    */
-  onFocusin?: TooltipableEventCallback<'focusin'>;
+  onFocusin?: RequireAtLeastOne<ListenerObject<'focusin'>>;
   /**
    * @description
    * Event that occurs when an element loses focus.
    */
-  onFocusout?: TooltipableEventCallback<'focusout'>;
+  onFocusout?: RequireAtLeastOne<ListenerObject<'focusout'>>;
 };
 
 export type TooltipDirective = {
