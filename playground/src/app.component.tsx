@@ -2,6 +2,7 @@ import { type Component } from 'solid-js';
 import { Tooltip } from './components/tooltip/tooltip.component';
 import { type TooltipDirective, tooltip } from './solid-js-tooltip';
 import './app.styles.css';
+import { debounce, throttle } from './utils';
 
 declare module 'solid-js' {
   namespace JSX {
@@ -33,6 +34,20 @@ export const App: Component = () => {
                   position: 'right-center',
                 },
               ],
+              // onMouseenter: throttle((event, listener) => {
+              //   console.log('"onMouseenter" args:', { event, listener });
+              //   listener(event);
+              // }, 2000),
+              // onMouseenter: throttle((event) => {
+              //   console.log('"onMouseenter" args:', { event });
+              // }, 2000),
+              onMouseenter: {
+                listener(event, innerListener) {
+                  console.log('"onMouseenter" args:', { event, innerListener });
+
+                  innerListener(event);
+                },
+              },
             }}
             tabIndex={0}
           >
@@ -345,18 +360,18 @@ export const App: Component = () => {
                       // displayOnFocus: false,
                     },
                   ],
-                  onMouseenter: (event) => {
-                    console.log('onMouseenter:', event);
-                  },
-                  onMouseleave: (event) => {
-                    console.log('onMouseleave:', event);
-                  },
-                  onFocusin: (event) => {
-                    console.log('onFocusin:', event);
-                  },
-                  onFocusout: (event) => {
-                    console.log('onFocusout:', event);
-                  },
+                  // onMouseenter: (event) => {
+                  //   console.log('onMouseenter:', event);
+                  // },
+                  // onMouseleave: (event) => {
+                  //   console.log('onMouseleave:', event);
+                  // },
+                  // onFocusin: (event) => {
+                  //   console.log('onFocusin:', event);
+                  // },
+                  // onFocusout: (event) => {
+                  //   console.log('onFocusout:', event);
+                  // },
                 }}
                 tabIndex={0}
               >
