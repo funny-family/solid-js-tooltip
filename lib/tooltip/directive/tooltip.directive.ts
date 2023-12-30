@@ -171,8 +171,8 @@ export const tooltip = ((element, accessor) => {
     }
   };
 
-  const onMouseenter: NonNullable<
-    TooltipDirectiveOption['onMouseenter']
+  const onMouseEnter: NonNullable<
+    TooltipDirectiveOption['onMouseEnter']
   >['listener'] = function (event) {
     option.tooltips.forEach((tooltipOption) => {
       if (tooltipOption.displayOnHover === false) {
@@ -183,8 +183,8 @@ export const tooltip = ((element, accessor) => {
     });
   };
 
-  const onMouseleave: NonNullable<
-    TooltipDirectiveOption['onMouseleave']
+  const onMouseLeave: NonNullable<
+    TooltipDirectiveOption['onMouseLeave']
   >['listener'] = function () {
     option.tooltips.forEach((tooltipOption) => {
       if (tooltipOption.displayOnHover === false) {
@@ -195,8 +195,8 @@ export const tooltip = ((element, accessor) => {
     });
   };
 
-  const onFocusin: NonNullable<
-    TooltipDirectiveOption['onFocusin']
+  const onFocusIn: NonNullable<
+    TooltipDirectiveOption['onFocusIn']
   >['listener'] = function (event) {
     option.tooltips.forEach((tooltipOption) => {
       if (tooltipOption.displayOnFocus === false) {
@@ -207,8 +207,8 @@ export const tooltip = ((element, accessor) => {
     });
   };
 
-  const onFocusout: NonNullable<
-    TooltipDirectiveOption['onFocusout']
+  const onFocusOut: NonNullable<
+    TooltipDirectiveOption['onFocusOut']
   >['listener'] = function (event) {
     option.tooltips.forEach((tooltipOption) => {
       if (tooltipOption.displayOnFocus === false) {
@@ -220,44 +220,44 @@ export const tooltip = ((element, accessor) => {
   };
 
   const onMouseenterEventListener = setDefaultEventListener(
-    onMouseenter,
-    option?.onMouseenter?.listener as any
+    onMouseEnter,
+    option?.onMouseEnter?.listener as any
   );
   const onMouseleaveEventListener = setDefaultEventListener(
-    onMouseleave,
-    option?.onMouseleave?.listener as any
+    onMouseLeave,
+    option?.onMouseLeave?.listener as any
   );
   const onFocusinEventListener = setDefaultEventListener(
-    onFocusin,
-    option?.onFocusin?.listener as any
+    onFocusIn,
+    option?.onFocusIn?.listener as any
   );
   const onFocusoutEventListener = setDefaultEventListener(
-    onFocusout,
-    option?.onFocusout?.listener as any
+    onFocusOut,
+    option?.onFocusOut?.listener as any
   );
 
   element.addEventListener(
     'mouseenter',
     onMouseenterEventListener as any,
-    option?.onMouseenter
+    option?.onMouseEnter
       ?.addEventListenerOptions as ListenerObject<'mouseenter'>['addEventListenerOptions']
   );
   element.addEventListener(
     'mouseleave',
     onMouseleaveEventListener as any,
-    option?.onMouseenter
+    option?.onMouseLeave
       ?.addEventListenerOptions as ListenerObject<'mouseleave'>['addEventListenerOptions']
   );
   element.addEventListener(
     'focusin',
     onFocusinEventListener as any,
-    option?.onMouseenter
+    option?.onFocusIn
       ?.addEventListenerOptions as ListenerObject<'focusin'>['addEventListenerOptions']
   );
   element.addEventListener(
     'focusout',
     onFocusoutEventListener as any,
-    option?.onMouseenter
+    option?.onFocusOut
       ?.addEventListenerOptions as ListenerObject<'focusout'>['addEventListenerOptions']
   );
 
@@ -265,25 +265,25 @@ export const tooltip = ((element, accessor) => {
     element.removeEventListener(
       'mouseenter',
       onMouseenterEventListener as any,
-      option?.onMouseenter
+      option?.onMouseEnter
         ?.addEventListenerOptions as ListenerObject<'mouseenter'>['removeEventListenerOptions']
     );
     element.removeEventListener(
       'mouseleave',
       onMouseleaveEventListener as any,
-      option?.onMouseenter
+      option?.onMouseLeave
         ?.addEventListenerOptions as ListenerObject<'mouseleave'>['removeEventListenerOptions']
     );
     element.removeEventListener(
       'focusin',
       onFocusinEventListener as any,
-      option?.onMouseenter
+      option?.onFocusIn
         ?.addEventListenerOptions as ListenerObject<'focusin'>['removeEventListenerOptions']
     );
     element.removeEventListener(
       'focusout',
       onFocusoutEventListener as any,
-      option?.onMouseenter
+      option?.onFocusOut
         ?.addEventListenerOptions as ListenerObject<'focusout'>['removeEventListenerOptions']
     );
   });

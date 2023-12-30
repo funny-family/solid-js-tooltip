@@ -54,8 +54,28 @@ export type ListenerCallback<
 
 export type ListenerObject<TEventName extends GlobalEventHandlersEventMapKey> =
   {
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#listener
+     *
+     * @description
+     * The object that receives a notification (an object that implements the "Event" interface) when an event of the specified type occurs.
+     */
     listener?: ListenerCallback<TEventName>;
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#options
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#usecapture
+     *
+     * @description
+     * An object that specifies characteristics about the event listener.
+     */
     addEventListenerOptions?: boolean | AddEventListenerOptions;
+    /**
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener#options
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener#usecapture
+     *
+     * @description
+     * An object that specifies characteristics about the event listener.
+     */
     removeEventListenerOptions?: boolean | EventListenerOptions;
   };
 
@@ -69,22 +89,22 @@ export type TooltipDirectiveOption<TElement = JSX.Element> = {
    * @description
    * Event that occurs when the mouse pointer enters an element.
    */
-  onMouseenter?: RequireAtLeastOne<ListenerObject<'mouseenter'>>;
+  onMouseEnter?: RequireAtLeastOne<ListenerObject<'mouseenter'>>;
   /**
    * @description
    * Event that occurs when the mouse pointer leaves an element.
    */
-  onMouseleave?: RequireAtLeastOne<ListenerObject<'mouseleave'>>;
+  onMouseLeave?: RequireAtLeastOne<ListenerObject<'mouseleave'>>;
   /**
    * @description
    * Event that occurs when an element gets focus.
    */
-  onFocusin?: RequireAtLeastOne<ListenerObject<'focusin'>>;
+  onFocusIn?: RequireAtLeastOne<ListenerObject<'focusin'>>;
   /**
    * @description
    * Event that occurs when an element loses focus.
    */
-  onFocusout?: RequireAtLeastOne<ListenerObject<'focusout'>>;
+  onFocusOut?: RequireAtLeastOne<ListenerObject<'focusout'>>;
 };
 
 export type TooltipDirective = {
