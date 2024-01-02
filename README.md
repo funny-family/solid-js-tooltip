@@ -173,6 +173,10 @@ import { Tooltip } from './custom-tooltip-component-from-somewhere';
 </p>
 ```
 
+### Directive API:
+
+1
+
 ### Directive options:
 
 - `tooltips`: Required. Array of options for tooltip:
@@ -181,10 +185,13 @@ import { Tooltip } from './custom-tooltip-component-from-somewhere';
     `top-center`, `top-right`, `top-right-corner`, `right-top`, `right-center`, `right-bottom`, `bottom-right-corner`, `bottom-right`, `bottom-center`, `bottom-left`, `bottom-left-corner`, `left-bottom`, `left-center`, `left-top`.
   - `displayOnHover`: Optional. Controls whether a tooltip is displayed when hovering over an element.
   - `displayOnFocus`: Optional. Controls whether a tooltip is displayed when focusing over an element.
-- `onMouseenter`: Optional. Event that occurs when the mouse pointer enters an element.
-- `onMouseleave`: Optional. Event that occurs when the mouse pointer leaves an element.
-- `onFocusin`: Optional. Event that occurs when an element gets focus.
-- `onFocusout`: Optional. Event that occurs when an element loses focus.
+- `onMouseEnter`: Optional. Event that occurs when the mouse pointer enters an element.
+  - 1
+  - 1
+  - 2
+- `onMouseLeave`: Optional. Event that occurs when the mouse pointer leaves an element.
+- `onFocusIn`: Optional. Event that occurs when an element gets focus.
+- `onFocusOut`: Optional. Event that occurs when an element loses focus.
 
 ### Component props:
 The `Tooltip` component has all the same attributes and events as the `HTMLDivElement`.
