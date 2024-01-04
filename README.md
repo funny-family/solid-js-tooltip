@@ -173,9 +173,25 @@ import { Tooltip } from './custom-tooltip-component-from-somewhere';
 </p>
 ```
 
+### Component API:
+
+`Tooltip` component has the same attributes and events as `HTMLDivElement` and serves as a base for your custom tooltip.
+
+#### Default props:
+
+| Prop name                      | Type      | Description                                                                                               | Default value        |
+| ------------------------------ | --------- | --------------------------------------------------------------------------------------------------------- | -------------------- |
+| `class`                        | `string`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class)                  | `'solid-js-tooltip'` |
+| `role`                         | `string`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/role)                   | `'tooltip'`          |
+| `tabIndex`                     | `number`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)               | `-1`                 |
+| `inert`                        | `boolean` | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert)                  | `true`               |
+| `aria-labelledby`              | `string`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) | `'tooltip'`          |
+| `aria-hidden`                  | `boolean` | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden)     | `true`               |
+| `data-tooltip-sr-notification` | `string`  | Data attribute that notifies the screen reader user that this element has a tooltip.                      | `'; Has tooltip: '`  |
+
 ### Directive API:
 
-1
+Directive.
 
 ### Directive options:
 
@@ -194,4 +210,5 @@ import { Tooltip } from './custom-tooltip-component-from-somewhere';
 - `onFocusOut`: Optional. Event that occurs when an element loses focus.
 
 ### Component props:
+
 The `Tooltip` component has all the same attributes and events as the `HTMLDivElement`.
