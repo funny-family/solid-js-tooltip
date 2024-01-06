@@ -182,9 +182,10 @@ import { Tooltip } from './custom-tooltip-component-from-somewhere';
 | Prop name                      | Type      | Description                                                                                               | Default value        |
 | ------------------------------ | --------- | --------------------------------------------------------------------------------------------------------- | -------------------- |
 | `class`                        | `string`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class)                  | `'solid-js-tooltip'` |
-| `role`                         | `string`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/role)                   | `'tooltip'`          |
-| `tabIndex`                     | `number`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)               | `-1`                 |
+| `role`                         | `string`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tooltip_role)         | `'tooltip'`          |
+| `tabindex`                     | `number`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)               | `-1`                 |
 | `inert`                        | `boolean` | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert)                  | `true`               |
+| `aria-label`                   | `string`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label)      | `'tooltip'`          |
 | `aria-labelledby`              | `string`  | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) | `'tooltip'`          |
 | `aria-hidden`                  | `boolean` | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden)     | `true`               |
 | `data-tooltip-sr-notification` | `string`  | Data attribute that notifies the screen reader user that this element has a tooltip.                      | `'; Has tooltip: '`  |
