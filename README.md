@@ -190,6 +190,31 @@ import { Tooltip } from './custom-tooltip-component-from-somewhere';
 | `aria-hidden`                  | `boolean` | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden)     | `true`               |
 | `data-tooltip-sr-notification` | `string`  | Data attribute that notifies the screen reader user that this element has a tooltip.                      | `'; Has tooltip: '`  |
 
+#### Example:
+```tsx
+import { tooltip, Tooltip } from 'solid-js-tooltip';
+
+...
+
+<p
+  use:tooltip={{
+    tooltips: [
+      {
+        element: (
+          <Tooltip class="tooltip">
+            What...
+          </Tooltip>
+        ),
+        position: 'top-center',
+      },
+    ],
+  }}
+  tabIndex={0}
+>
+  This is bla, bla, bla and bla...
+</p>
+```
+
 ### Directive API:
 
 Directive.
@@ -209,7 +234,3 @@ Directive.
 - `onMouseLeave`: Optional. Event that occurs when the mouse pointer leaves an element.
 - `onFocusIn`: Optional. Event that occurs when an element gets focus.
 - `onFocusOut`: Optional. Event that occurs when an element loses focus.
-
-### Component props:
-
-The `Tooltip` component has all the same attributes and events as the `HTMLDivElement`.
