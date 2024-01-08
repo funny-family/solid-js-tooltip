@@ -20,7 +20,7 @@ yarn solid-js-tooltip
 pnpm add solid-js-tooltip
 ```
 
-### [Demo here!](111)
+### [Demo here!](www.google.com)
 
 ---
 
@@ -191,6 +191,7 @@ import { Tooltip } from './custom-tooltip-component-from-somewhere';
 | `data-tooltip-sr-notification` | `string`  | Data attribute that notifies the screen reader user that this element has a tooltip.                      | `'; Has tooltip: '`  |
 
 #### Example:
+
 ```tsx
 import { tooltip, Tooltip } from 'solid-js-tooltip';
 
@@ -217,7 +218,22 @@ import { tooltip, Tooltip } from 'solid-js-tooltip';
 
 ### Directive API:
 
-Directive.
+| Option name    | Type                      | Description                                                                                                                                                       |
+| -------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tooltips`     | `object`                  | Array of options for each defined tooltip.                                                                                                                        |
+| `onMouseEnter` | `function` or `undefined` | Event that occurs when the mouse pointer enters an element. [(reference)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#listener) |
+| `onMouseLeave` | `function` or `undefined` | Event that occurs when the mouse pointer leaves an element. [(reference)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#listener) |
+| `onFocusIn`    | `function` or `undefined` | Event that occurs when an element gets focus. [(reference)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#listener)               |
+| `onFocusOut`   | `function` or `undefined` | Event that occurs when an element loses focus. [(reference)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#listener)              |
+
+#### `tooltips` option:
+
+| Option name      | Type                                                                                                                                                                                                                                                                                           | Description                                                                                     |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `element`        | `object`                                                                                                                                                                                                                                                                                       | Element used as a tooltip.                                                                      |
+| `position`       | `top-left-corner` or `top-left` or `top-center` or `top-right` or `top-right-corner` or `right-top` or `right-center` or `right-bottom` or `bottom-right-corner` or `bottom-right` or `bottom-center` or `bottom-left` or `bottom-left-corner` or `left-bottom` or `left-center` or `left-top` | Tooltip position. By default it is `top-left` position.                                         |
+| `displayOnHover` | `boolean` or `undefined`                                                                                                                                                                                                                                                                       | Controls whether a tooltip is displayed when hovering over an element. Bu default is is `true`. |
+| `displayOnFocus` | `boolean` or `undefined`                                                                                                                                                                                                                                                                       | Controls whether a tooltip is displayed when focusing over an element. Bu default is is `true`. |
 
 ### Directive options:
 
