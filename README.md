@@ -53,16 +53,16 @@ import { tooltip, Tooltip } from 'solid-js-tooltip';
       {
         element: (
           <Tooltip class="tooltip">
-            Is this lorem?
+            What...
           </Tooltip>
         ),
+        position: 'top-center',
       },
     ],
   }}
   tabIndex={0}
 >
-  Maecenas blandit arcu eget rutrum sodales. Vestibulum tempor mi nec metus
-  elementum fermentum. Aenean a gravida justo, nec pharetra massa.
+  This is bla, bla, bla and bla...
 </p>
 ```
 
@@ -190,32 +190,6 @@ import { Tooltip } from './custom-tooltip-component-from-somewhere';
 | `aria-hidden`                  | `boolean` | [read on MDN](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden)     | `true`               |
 | `data-tooltip-sr-notification` | `string`  | Data attribute that notifies the screen reader user that this element has a tooltip.                      | `'; Has tooltip: '`  |
 
-#### Example:
-
-```tsx
-import { tooltip, Tooltip } from 'solid-js-tooltip';
-
-...
-
-<p
-  use:tooltip={{
-    tooltips: [
-      {
-        element: (
-          <Tooltip class="tooltip">
-            What...
-          </Tooltip>
-        ),
-        position: 'top-center',
-      },
-    ],
-  }}
-  tabIndex={0}
->
-  This is bla, bla, bla and bla...
-</p>
-```
-
 ### Directive API:
 
 | Option name    | Type                      | Description                                                                                                                                                       |
@@ -234,19 +208,3 @@ import { tooltip, Tooltip } from 'solid-js-tooltip';
 | `position`       | `top-left-corner` or `top-left` or `top-center` or `top-right` or `top-right-corner` or `right-top` or `right-center` or `right-bottom` or `bottom-right-corner` or `bottom-right` or `bottom-center` or `bottom-left` or `bottom-left-corner` or `left-bottom` or `left-center` or `left-top` | Tooltip position. By default it is `top-left` position.                                         |
 | `displayOnHover` | `boolean` or `undefined`                                                                                                                                                                                                                                                                       | Controls whether a tooltip is displayed when hovering over an element. Bu default is is `true`. |
 | `displayOnFocus` | `boolean` or `undefined`                                                                                                                                                                                                                                                                       | Controls whether a tooltip is displayed when focusing over an element. Bu default is is `true`. |
-
-### Directive options:
-
-- `tooltips`: Required. Array of options for tooltip:
-  - `element`: Required. Element used as a tooltip.
-  - `position`: Optional. Tooltip position. Available positions: `top-left-corner`, `top-left`,
-    `top-center`, `top-right`, `top-right-corner`, `right-top`, `right-center`, `right-bottom`, `bottom-right-corner`, `bottom-right`, `bottom-center`, `bottom-left`, `bottom-left-corner`, `left-bottom`, `left-center`, `left-top`.
-  - `displayOnHover`: Optional. Controls whether a tooltip is displayed when hovering over an element.
-  - `displayOnFocus`: Optional. Controls whether a tooltip is displayed when focusing over an element.
-- `onMouseEnter`: Optional. Event that occurs when the mouse pointer enters an element.
-  - 1
-  - 1
-  - 2
-- `onMouseLeave`: Optional. Event that occurs when the mouse pointer leaves an element.
-- `onFocusIn`: Optional. Event that occurs when an element gets focus.
-- `onFocusOut`: Optional. Event that occurs when an element loses focus.
