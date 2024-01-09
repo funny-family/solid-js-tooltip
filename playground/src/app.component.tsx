@@ -26,7 +26,7 @@ export const App: Component = () => {
             use:tooltip={{
               tooltips: [
                 {
-                  element: <Tooltip>This is heading!</Tooltip>,
+                  element: <Tooltip >This is heading!</Tooltip>,
                   position: 'top-left',
                 },
                 {
@@ -41,7 +41,7 @@ export const App: Component = () => {
               // onMouseenter: throttle((event) => {
               //   console.log('"onMouseenter" args:', { event });
               // }, 2000),
-              onMouseenter: {
+              onMouseEnter: {
                 listener(event, innerListener) {
                   console.log('"onMouseenter" args:', { event, innerListener });
 
@@ -54,7 +54,13 @@ export const App: Component = () => {
             Lorem Ipsum
           </h1>
         </u>
-        <h4>
+        <h4
+        // onMouseEnter={}
+        // onMouseLeave={}
+
+        // onFocusIn={}
+        // onFocusOut={}
+        >
           "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
           <u
             class="highlight-text"
