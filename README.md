@@ -20,7 +20,7 @@ yarn solid-js-tooltip
 pnpm add solid-js-tooltip
 ```
 
-### [Demo here!](www.google.com)
+### [Demo here!](https://funny-family.github.io/solid-js-tooltip/)
 
 ---
 
