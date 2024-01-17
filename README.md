@@ -26,7 +26,7 @@ pnpm add solid-js-tooltip
 
 ### Setup:
 
-```ts
+```tsx
 import { type TooltipDirective, tooltip } from 'solid-js-tooltip';
 import 'solid-js-tooltip/styles.css';
 
@@ -118,8 +118,11 @@ import { tooltip, Tooltip } from 'solid-js-tooltip';
         displayOnHover: false,
       },
     ],
-    onFocusin: (event) => {
+    onFocusin: (event, innerListener) => {
       console.log('"focusin" event:"', event);
+
+      // don't forget to call it because "innerListener" contains the logic for the tooltip to provide focus
+      innerListener(event);
     },
   }}
   tabIndex={0}
@@ -205,6 +208,6 @@ import { Tooltip } from './custom-tooltip-component-from-somewhere';
 | Option name      | Type                                                                                                                                                                                                                                                                                           | Description                                                                                     |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `element`        | `object`                                                                                                                                                                                                                                                                                       | Element used as a tooltip.                                                                      |
-| `position`       | `top-left-corner` or `top-left` or `top-center` or `top-right` or `top-right-corner` or `right-top` or `right-center` or `right-bottom` or `bottom-right-corner` or `bottom-right` or `bottom-center` or `bottom-left` or `bottom-left-corner` or `left-bottom` or `left-center` or `left-top` | Tooltip position. By default it is `top-left` position.                                         |
-| `displayOnHover` | `boolean` or `undefined`                                                                                                                                                                                                                                                                       | Controls whether a tooltip is displayed when hovering over an element. Bu default is is `true`. |
-| `displayOnFocus` | `boolean` or `undefined`                                                                                                                                                                                                                                                                       | Controls whether a tooltip is displayed when focusing over an element. Bu default is is `true`. |
+| `position`       | `top-left-corner` or `top-left` or `top-center` or `top-right` or `top-right-corner` or `right-top` or `right-center` or `right-bottom` or `bottom-right-corner` or `bottom-right` or `bottom-center` or `bottom-left` or `bottom-left-corner` or `left-bottom` or `left-center` or `left-top` | Tooltip position. By default it is `top-left`.                                         |
+| `displayOnHover` | `boolean` or `undefined`                                                                                                                                                                                                                                                                       | Controls whether a tooltip is displayed when hovering over an element. By default it is `true`. |
+| `displayOnFocus` | `boolean` or `undefined`                                                                                                                                                                                                                                                                       | Controls whether a tooltip is displayed when focusing over an element. By default it is `true`. |
