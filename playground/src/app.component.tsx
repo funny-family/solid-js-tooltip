@@ -68,7 +68,7 @@ export const App: Component = () => {
               tooltips: [
                 {
                   element: <Tooltip>"consectetur"</Tooltip>,
-                  position: 'left-bottom',
+                  position: 'top-left-corner',
                 },
               ],
             }}
