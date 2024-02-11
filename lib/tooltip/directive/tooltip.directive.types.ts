@@ -19,7 +19,7 @@ export type TooltipPosition =
   | 'left-center'
   | 'left-top';
 
-type TooltipOption<TElement = HTMLElement> = {
+export type TooltipOption<TElement = HTMLElement> = {
   /**
    * @description
    * Element used as a tooltip.
