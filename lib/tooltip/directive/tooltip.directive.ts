@@ -104,7 +104,7 @@ var setTooltipPosition = (
 
   if (position === 'top-right-corner') {
     tooltip.style.transform = createTranslate3dStyle(
-      `calc(var(${tooltipableWidth_CssVar}) - var(${tooltipMarginX_CssVar}))`,
+      `calc(var(${tooltipableWidth_CssVar}) + var(${tooltipMarginX_CssVar}))`,
       `calc(-100% - var(${tooltipMarginY_CssVar}))`
     );
   }
