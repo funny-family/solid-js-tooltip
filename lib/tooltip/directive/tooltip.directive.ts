@@ -174,7 +174,7 @@ var setTooltipPosition = (
 
   if (position === 'left-center') {
     tooltip.style.transform = createTranslate3dStyle(
-      `calc(-100% - var(${tooltipMarginX_CssVar}))`,
+      `calc(-100% + var(${tooltipMarginX_CssVar}))`,
       `calc(-50% + (var(${tooltipableHeight_CssVar}) / 2) - var(${tooltipMarginY_CssVar}))`
     );
   }
