@@ -1,4 +1,5 @@
-import { onCleanup } from 'solid-js';
+import { onCleanup, $PROXY, For, children } from 'solid-js';
+import { createMutable } from 'solid-js/store';
 import type {
   ListenerObject,
   TooltipDirectiveAccessorArg,
@@ -6,6 +7,7 @@ import type {
   TooltipDirectiveOption,
   TooltipPosition,
   ListenerCallback,
+  TooltipOption,
 } from './tooltip.directive.types';
 import type { DeepRequired } from '../../types';
 
@@ -14,8 +16,9 @@ var tooltipMarginY_CssVar = '--tooltip-margin-y' as const;
 var tooltipableWidth_CssVar = '--tooltipable-width' as const;
 var tooltipableHeight_CssVar = '--tooltipable-height' as const;
 
-var unwrapElement = (element: HTMLElement | (() => HTMLElement)) =>
-  typeof element === 'function' ? element() : element;
+var unwrapElement = (element: HTMLElement | (() => HTMLElement)) => {
+  return typeof element === 'function' ? element() : element;
+};
 
 var setDefaultEventListener = <
   TDefaultListener extends (...args: any[]) => void,
@@ -31,21 +34,18 @@ var setDefaultEventListener = <
       };
 };
 
-var createDefaultTooltipOption = (
-  tooltipOption: TooltipDirectiveAccessorArg['tooltips'][0]
-) => {
-  const tooltipElement = unwrapElement(tooltipOption.element);
-  const tooltipDisplayOnHover =
-    tooltipOption?.displayOnHover != null ? tooltipOption.displayOnHover : true;
-  const tooltipDisplayOnFocus =
-    tooltipOption?.displayOnFocus != null ? tooltipOption.displayOnFocus : true;
-  const tooltipPosition = tooltipOption?.position || 'top-left';
+var createDefaultTooltipOption = (option: TooltipOption<HTMLElement>) => {
+  const position = option?.position || 'top-left';
+
+  option.element.setAttribute('data-tooltip-position', position);
 
   return {
-    element: tooltipElement,
-    displayOnHover: tooltipDisplayOnHover,
-    displayOnFocus: tooltipDisplayOnFocus,
-    position: tooltipPosition,
+    element: option.element,
+    position,
+    displayOnHover:
+      option?.displayOnHover != null ? option.displayOnHover : true,
+    displayOnFocus:
+      option?.displayOnFocus != null ? option.displayOnFocus : true,
   };
 };
 
@@ -63,6 +63,7 @@ var setTooltipPosition = (
 
   tooltip.style.top = `${tooltipableRect.top + window.scrollY}px`;
   tooltip.style.left = `${tooltipableRect.left + window.scrollX}px`;
+  tooltip.style.willChange = 'transform';
 
   const tooltipableWidth = `${tooltipableRect.width}px` as const;
   const tooltipableHeight = `${tooltipableRect.height}px` as const;
@@ -73,11 +74,9 @@ var setTooltipPosition = (
   tooltip.style.setProperty(tooltipableWidth_CssVar, tooltipableWidth);
   tooltip.style.setProperty(tooltipableHeight_CssVar, tooltipableHeight);
 
-  tooltip.style.willChange = 'transform';
-
   if (position === 'top-left-corner') {
     tooltip.style.transform = createTranslate3dStyle(
-      `calc(-100% - var(${tooltipMarginX_CssVar}))`,
+      `calc(-100% + var(${tooltipMarginX_CssVar}))`,
       `calc(-100% - var(${tooltipMarginY_CssVar}))`
     );
   }
@@ -91,7 +90,7 @@ var setTooltipPosition = (
 
   if (position === 'top-center') {
     tooltip.style.transform = createTranslate3dStyle(
-      `calc(-50% + (var(${tooltipableWidth_CssVar}) / 2) - var(${tooltipMarginX_CssVar}))`,
+      `calc(-50% + (var(${tooltipableWidth_CssVar}) / 2) + var(${tooltipMarginX_CssVar}))`,
       `calc(-100% - var(${tooltipMarginY_CssVar}))`
     );
   }
@@ -196,7 +195,14 @@ export const tooltip = ((element, accessor) => {
   (option.tooltips as unknown) = (
     option.tooltips as TooltipDirectiveAccessorArg['tooltips']
   ).map((tooltipOption) => {
-    return createDefaultTooltipOption(tooltipOption);
+    return createDefaultTooltipOption({
+      element: children(
+        () => tooltipOption.element as HTMLElement
+      )() as HTMLElement,
+      position: tooltipOption.position,
+      displayOnHover: tooltipOption.displayOnHover,
+      displayOnFocus: tooltipOption.displayOnFocus,
+    });
   });
 
   const inEvent = <TEvent extends Event>(
@@ -221,7 +227,7 @@ export const tooltip = ((element, accessor) => {
 
     if (tooltip != null) {
       try {
-        document.body.removeChild(tooltip);
+        // document.body.removeChild(tooltip);
       } catch {}
     }
   };
